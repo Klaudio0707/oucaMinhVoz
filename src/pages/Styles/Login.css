@@ -1,0 +1,86 @@
+/* Fundo da página com gradiente */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom right, #6a11cb, #2575fc);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Container do formulário de login */
+.login-container {
+  background: white;
+  padding: 3rem;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  width: 95%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Cabeçalho */
+.login-form h2 {
+  margin-bottom: 1.5rem;
+  color: #333;
+  font-size: 24px;
+}
+
+/* Mensagem de erro */
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 1rem;
+}
+
+/* Formulário */
+.form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Botões */
+.btn-submit {
+  background: #6a11cb;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  margin-bottom: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+  background: #2575fc;
+}
+
+.btn-register {
+  display: block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: #2575fc;
+  font-size: 14px;
+}
+
+.btn-register:hover {
+  text-decoration: underline;
+}

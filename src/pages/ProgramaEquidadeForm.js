@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './dashBoard.css';
+
 
 function ProgramaEquidadeForm() {
   const [formData, setFormData] = useState({

@@ -1,15 +1,14 @@
 const BASE_URL = 'http://localhost:5001';
 const ENDPOINTS = {
   USERS: `${BASE_URL}/users`,
-  DOCUMENTOS: `${BASE_URL}/documentos`
+  DOCUMENTOS: `${BASE_URL}/documentos`,
 };
-// executar o codigo abaixo para rodar localmente o servidor
-// json-server --watch db.json --port 5001
+
 // Configuração padrão para requisições
 const CONFIG = {
   headers: {
-    'Content-Type': 'application/json'
-  }
+    'Content-Type': 'application/json',
+  },
 };
 
 // Classe para gerenciar erros personalizados da API
@@ -21,51 +20,51 @@ class APIError extends Error {
   }
 }
 
-// Utilitários para storage
+// Utilitários para gerenciamento de `localStorage`
 const storage = {
   setItem(key, value) {
     localStorage.setItem(key, value);
   },
-  
+
   getItem(key) {
     return localStorage.getItem(key);
   },
-  
+
   removeItem(key) {
     localStorage.removeItem(key);
   },
-  
+
   clear() {
     localStorage.clear();
-  }
+  },
 };
 
-// Handler de respostas da API
+// Handler para processar respostas da API
 const handleResponse = async (response) => {
   const data = await response.json().catch(() => ({}));
-  
+
   if (!response.ok) {
     throw new APIError(
       data.message || 'Erro na requisição',
       response.status
     );
   }
-  
+
   return data;
 };
 
-// Função base para requisições
+// Função base para fazer requisições
 const fetchWithConfig = async (url, options = {}) => {
   try {
     const token = storage.getItem('token');
-    
+
     const config = {
       ...options,
       headers: {
         ...CONFIG.headers,
         ...options.headers,
-        ...(token && { Authorization: `Bearer ${token}` })
-      }
+        ...(token && { Authorization: `Bearer ${token}` }),
+      },
     };
 
     const response = await fetch(url, config);
@@ -76,23 +75,29 @@ const fetchWithConfig = async (url, options = {}) => {
   }
 };
 
+// API principal
 const api = {
   auth: {
     async login(email, senha) {
       try {
-        const response = await fetchWithConfig(`${ENDPOINTS.USERS}/login`, {
-          method: 'POST',
-          body: JSON.stringify({ email, senha })
+        const response = await fetchWithConfig(`${ENDPOINTS.USERS}`, {
+          method: 'GET',
         });
 
-        if (!response.token) {
-          throw new APIError('Token não recebido');
+        const user = response.find(
+          (user) => user.email === email && user.senha === senha
+        );
+
+        if (!user) {
+          throw new APIError('Email ou senha inválidos');
         }
 
-        storage.setItem('token', response.token);
-        storage.setItem('userId', response.user.id);
-        
-        return response;
+        // Simula geração de token e autenticação
+        const token = `fake-token-${Date.now()}`;
+        storage.setItem('token', token);
+        storage.setItem('userId', user.id);
+
+        return { token, user };
       } catch (error) {
         throw new APIError(`Erro no login: ${error.message}`);
       }
@@ -112,7 +117,7 @@ const api = {
 
     isAuthenticated() {
       return Boolean(this.getToken());
-    }
+    },
   },
 
   documentos: {
@@ -134,8 +139,8 @@ const api = {
           descricao,
           userId,
           status: 'Pendente',
-          dataCriacao: new Date().toISOString()
-        })
+          dataCriacao: new Date().toISOString(),
+        }),
       });
     },
 
@@ -143,19 +148,19 @@ const api = {
       if (!id) {
         throw new APIError('ID do documento é obrigatório');
       }
-      
+
       return fetchWithConfig(`${ENDPOINTS.DOCUMENTOS}/${id}`, {
         method: 'PATCH',
         body: JSON.stringify({
           status,
-          dataAtualizacao: new Date().toISOString()
-        })
+          dataAtualizacao: new Date().toISOString(),
+        }),
       });
     },
 
     async excluir(id) {
       return fetchWithConfig(`${ENDPOINTS.DOCUMENTOS}/${id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
       });
     },
 
@@ -165,6 +170,8 @@ const api = {
       }
 
       return fetchWithConfig(`${ENDPOINTS.DOCUMENTOS}/${id}`);
-    }
-  }
+    },
+  },
 };
+
+export default api;

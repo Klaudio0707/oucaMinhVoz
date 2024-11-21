@@ -8,7 +8,7 @@ function PlanoAcao() {
   };
 
   return (
-    <div className="plano-acao-wrapper">
+ 
       <div className="plano-acao-container">
         <h1 className="title">Plano de Ação – 7ª Edição</h1>
 
@@ -192,7 +192,7 @@ function PlanoAcao() {
           </button>
         </form>
       </div>
-    </div>
+
   );
 }
 

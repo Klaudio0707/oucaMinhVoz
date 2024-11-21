@@ -1,219 +1,105 @@
-.plano-acao-wrapper {
-  min-height: 100vh;
+/* PlanoAcao.css */
+
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 160%;
+  font-family: Arial, sans-serif;
+}
+
+.plano-acao-container {
+  min-height: 100vh; /* Garante que a altura seja de 100% da viewport */
   width: 100%;
   padding: 20px;
-  background-color: #f5f6fa;
-}
-
-/* Container principal */
-.plano-acao-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 30px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Título principal */
-.title {
-  color: #333;
-  text-align: center;
-  margin-bottom: 2rem;
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-/* Container do formulário */
-.form-container {
+  background-color: #f9f9f9;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  align-items: center;
 }
 
-/* Seções */
-.section {
-  background: #fff;
-  border: 1px solid #e1e1e1;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 2rem;
-}
-
-/* Título das seções */
-.section-title {
-  color: #2c3e50;
-  border-bottom: 2px solid #3498db;
-  padding-bottom: 10px;
+.title {
   margin-bottom: 20px;
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 24px;
+  text-align: center;
+  color: #ec1a1a;
 }
 
-/* Campos do formulário */
+.form-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #555;
+}
+
 .form-field {
-  margin-bottom: 1.5rem;
+  margin-bottom: 15px;
 }
 
-/* Labels */
-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: #444;
-  font-weight: 500;
+.input-field, .textarea-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.input-field.small {
+  width: calc(33.333% - 10px); /* Ajuste para inputs menores */
+  margin-right: 10px;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
 }
 
 .label-block {
   display: block;
-  margin-bottom: 1rem;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
-/* Inputs */
-.input-field {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 1rem;
-  margin-top: 0.5rem;
-}
-
-.input-field:focus {
-  outline: none;
-  border-color: #3498db;
-  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
-}
-
-/* Campos pequenos */
-.small {
-  width: 120px;
-}
-
-/* Layout em grade para campos na mesma linha */
-.row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-/* Grupos de radio e checkbox */
-.radio-group,
-.checkbox-group {
+.radio-group, .checkbox-group {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
-  margin-top: 0.5rem;
+  gap: 10px;
 }
 
-.radio-label,
-.checkbox-label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0;
-  cursor: pointer;
+.radio-label, .checkbox-label {
+  font-size: 14px;
 }
 
-/* Áreas de texto */
-.textarea-field {
-  width: 100%;
-  min-height: 120px;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  resize: vertical;
-  font-family: inherit;
-  font-size: 1rem;
-  margin-top: 0.5rem;
-}
-
-.textarea-field:focus {
-  outline: none;
-  border-color: #3498db;
-  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
-}
-
-/* Container dos eixos */
 .eixo-container {
-  margin-top: 1.5rem;
+  margin-top: 10px;
 }
 
-/* Título dos eixos */
-.eixo-title {
-  color: #2c3e50;
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
-  font-weight: 500;
-}
-
-/* Botão de envio */
 .submit-button {
-  background-color: #3498db;
-  color: white;
-  padding: 12px 24px;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
   border: none;
   border-radius: 4px;
-  font-size: 1rem;
+  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s;
-  margin: 2rem auto;
-  width: 200px;
-  display: block;
+  text-align: center;
 }
 
 .submit-button:hover {
-  background-color: #2980b9;
+  background-color: #0056b3;
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-  .plano-acao-wrapper {
-    padding: 10px;
-  }
-  
-  .plano-acao-container {
-    padding: 15px;
-  }
-  
-  .title {
-    font-size: 1.5rem;
-  }
-  
-  .section-title {
-    font-size: 1.25rem;
-  }
-  
-  .small {
-    width: 100%;
-  }
-  
-  .radio-group,
-  .checkbox-group {
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-  
-  .submit-button {
-    width: 100%;
-  }
-}
-
-/* Estilo para inputs com erro */
-.input-error {
-  border-color: #e74c3c;
-}
-
-.error-message {
-  color: #e74c3c;
-  font-size: 0.875rem;
-  margin-top: 0.25rem;
-}
-
-/* Estilos de acessibilidade */
-input:focus,
-textarea:focus,
-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.4);
-}

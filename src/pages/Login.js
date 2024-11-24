@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import api from '../apiFake/api'; // Certifique-se de que o caminho está correto
-import  style from './Styles/Login.module.css';
+import api from '../apiFake/api';
+import { useUser } from "./Services/UserContext";// Importa o contexto
+import style from './Styles/Login.module.css';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [erro, setErro] = useState('');
-  const [loading, setLoading] = useState(false); // Estado de carregamento
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { setUser } = useUser(); // Obtém o método para salvar o usuário no contexto
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,29 +18,33 @@ function Login() {
     setLoading(true);
 
     try {
-      // Chamando o método de login da API
       const { user, token } = await api.auth.login(email, senha);
 
-      // Exibindo informações úteis para depuração
       console.log('Usuário autenticado:', user);
       console.log('Token gerado:', token);
 
-      // Redireciona para o Dashboard
-      navigate('/Dashboard');
+      // Armazena o usuário no contexto
+      setUser(user);
+
+      // Redireciona para a página de dados
+      navigate('/Dados');
     } catch (error) {
-      setErro(error.message || 'Erro ao fazer login');
+      setErro(error.message || 'Erro ao fazer login. Verifique suas credenciais e tente novamente.');
       console.error('Erro ao autenticar:', error);
     } finally {
-      setLoading(false); // Finaliza o estado de carregamento
+      setLoading(false);
     }
   };
 
   return (
-    <div className={style["login-container"]}>
-      <form className={style["login-form"]} onSubmit={handleSubmit}>
+    <div className={style['login-container']}>
+      <form className={style['login-form']} onSubmit={handleSubmit}>
         <h2>Login</h2>
-        {erro && <p className="error-message">{erro}</p>}
-        <div className={style["form-group"]}>
+
+        {/* Exibe mensagens de erro */}
+        {erro && <p className={style['error-message']}>{erro}</p>}
+
+        <div className={style['form-group']}>
           <label htmlFor="email">Email</label>
           <input
             type="email"
@@ -49,7 +55,8 @@ function Login() {
             required
           />
         </div>
-        <div className={style["form-group"]}>
+
+        <div className={style['form-group']}>
           <label htmlFor="senha">Senha</label>
           <input
             type="password"
@@ -60,10 +67,16 @@ function Login() {
             required
           />
         </div>
-        <button type="submit" className={style["btn-submit"]} disabled={loading}>
+
+        {/* Botão de envio com estado de carregamento */}
+        <button type="submit" className={style['btn-submit']} disabled={loading}>
           {loading ? 'Entrando...' : 'Entrar'}
         </button>
-        <Link to="/Register" className={style["btn-register"]}>Cadastrar</Link>
+
+        {/* Link para a página de registro */}
+        <Link to="/Register" className={style['btn-register']}>
+          Cadastrar
+        </Link>
       </form>
     </div>
   );

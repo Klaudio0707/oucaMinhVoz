@@ -1,15 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { UserProvider } from  "./pages/Services/UserContext";
 import Login from './pages/Login'; // Certifique-se de que o caminho está correto
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import EnviarDocumento from './pages/Form-Envio';
-import ProgramaEquidadeForm from './pages/ProgramaEquidadeForm';
+import InscricaoPrograma from './pages/InscricaoPrograma';
 import StatusDocumentos from './pages/Status';
 import GovernoDashboard from './pages/DashboardGoverno';
 import FichaInteresse from './pages/FichaInteresse';
 import DashboardGovernoII from './pages/DashboardGovernoII';
 import PlanoAcao from './pages/PlanoAcao';
+import Dados from './pages/Dados';
 import './App.css';
 
 function ProtectedRoute({ children }) {
@@ -20,6 +22,8 @@ function ProtectedRoute({ children }) {
 
 function App() {
   return (
+    <UserProvider>
+
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
@@ -39,7 +43,7 @@ function App() {
               <EnviarDocumento />
             </ProtectedRoute>
           }
-        />
+          />
         <Route
           path="/Status"
           element={
@@ -47,7 +51,7 @@ function App() {
               <StatusDocumentos />
             </ProtectedRoute>
           }
-        />
+          />
         <Route
           path="/DashboardGoverno"
           element={
@@ -57,13 +61,21 @@ function App() {
           }
         />
         <Route
-          path="/ProgramaEquidadeForm"
+          path="/InscricaoPrograma"
           element={
             <ProtectedRoute>
-              <ProgramaEquidadeForm />
+              <InscricaoPrograma />
             </ProtectedRoute>
           }
-        />
+          />
+         <Route
+          path="/Dados"
+          element={
+            <ProtectedRoute>
+              <Dados />
+            </ProtectedRoute>
+          }
+          />
          <Route
           path="/PlanoAcao"
           element={
@@ -71,7 +83,7 @@ function App() {
               <PlanoAcao />
             </ProtectedRoute>
           }
-        />
+          />
          <Route
           path="/FichaInteresse"
           element={
@@ -87,9 +99,10 @@ function App() {
               <DashboardGovernoII />
             </ProtectedRoute>
           }
-        />
+          />
       </Routes>
     </Router>
+          </UserProvider>
   );
 }
 

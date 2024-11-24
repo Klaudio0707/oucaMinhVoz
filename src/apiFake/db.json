@@ -2,106 +2,101 @@
   "users": [
     {
       "id": "1",
-      "nomeEnterprise": "Empresa",
-      "nomeUser": "usuario",
+      "nomeRepresentante": "Usuário Teste",
       "email": "teste@teste.com",
-      "senha": "123456"
+      "senha": "123456",
+      "cnpj": "12345678000100",
+      "nomeEmpresa": "Empresa Teste",
+      "endereco": "Rua Teste, 123 - São Paulo, SP",
+      "criterios": {
+        "criterio1": true,
+        "criterio2": false,
+        "criterio3": true,
+        "criterio4": false,
+        "criterio5": true
+      }
     },
     {
       "id": "2",
-      "nomeEnterprise": " Exemplo",
-      "nomeUser": "usuario",
-      "email": "empresa@teste.com",
-      "senha": "123456"
+      "nomeRepresentante": "João Silva",
+      "email": "joao@exemplo.com",
+      "senha": "123456",
+      "cnpj": "98765432000100",
+      "nomeEmpresa": "Exemplo Ltda",
+      "endereco": "Av. Exemplo, 456 - Rio de Janeiro, RJ",
+      "criterios": {
+        "criterio1": true,
+        "criterio2": true,
+        "criterio3": false,
+        "criterio4": true,
+        "criterio5": true
+      }
     },
     {
-      "id": "5f73",
-      "nomeEnterprise": "Exemplo",
-      "nomeUser": "Cláudio",
-      "email": "claudio@outlook.com.br",
-      "senha": "123456"
-    },
-    {
-      "id": "3f80",
-      "nomeEnterprise": "Empresa Exemplo",
-      "nomeUser": "usuario",
-      "email": "francisca@continental.com.br",
-      "senha": "123456"
-    },
-    {
-      "id": "06e8",
-      "nomeEnterprise": "Empresa Exemplo",
-      "nomeUser": "usuario",
-      "email": "claudio@claudio.com.br",
-      "senha": "123456"
-    },
-    {
-      "id": "cbcf",
-      "nomeEnterprise": "Empresa Exemplo",
-      "nomeUser": "usuario",
-      "email": "contato@crinformatica.com",
-      "senha": "123456"
-    },
-    {
-      "id": "340d",
-      "nomeUser": "Luiz Jorge",
-      "nomeEnterprise": "Coiote Informatica",
-      "email": "jorge@outlook.com",
-      "senha": "123456"
+      "id": "3",
+      "nomeRepresentante": "Maria Oliveira",
+      "email": "maria@empresa.com",
+      "senha": "senha123",
+      "cnpj": "12398765000100",
+      "nomeEmpresa": "Empresa Modelo",
+      "endereco": "Praça Central, 789 - Belo Horizonte, MG",
+      "criterios": {
+        "criterio1": true,
+        "criterio2": true,
+        "criterio3": true,
+        "criterio4": false,
+        "criterio5": false
+      }
     }
   ],
-  "documentos": [
+  "formularios": [
     {
-      "id": "1",
-      "titulo": "Política de Igualdade de Gênero",
-      "descricao": "Descrição do documento de política de igualdade de gênero.",
-      "userId": 1,
-      "status": "Pendente"
-    },
-    {
-      "id": "86db",
-      "titulo": "qeqwe",
-      "descricao": "111"
-    },
-    {
-      "id": "659b",
-      "titulo": "asdasda",
-      "descricao": "asdasdas",
-      "userId": "1",
-      "status": "Pendente",
-      "dataCriacao": "2024-11-17T04:18:27.105Z"
-    },
-    {
-      "id": "c2dd",
-      "titulo": "df",
-      "descricao": "dfgdfg",
-      "userId": "5f73",
-      "status": "Pendente",
-      "dataCriacao": "2024-11-24T03:33:13.291Z"
-    },
-    {
-      "id": "6980",
-      "titulo": "Novo Documento",
-      "descricao": "Descrição de exemplo",
-      "userId": "5f73",
-      "status": "Pendente",
-      "dataCriacao": "2024-11-24T03:44:09.368Z"
-    },
-    {
-      "id": "bdcb",
-      "titulo": "Novo Documento",
-      "descricao": "Descrição de exemplo",
-      "userId": "340d",
-      "status": "Pendente",
-      "dataCriacao": "2024-11-24T04:39:49.427Z"
-    },
-    {
-      "id": "e0e6",
-      "titulo": "hhjkkjhjk",
-      "descricao": "qasdas",
-      "userId": "340d",
-      "status": "Pendente",
-      "dataCriacao": "2024-11-24T04:40:04.833Z"
+      "id": 1,
+      "organizacao": {
+        "nome": "Exemplo Org",
+        "endereco": "Rua Exemplo, 123",
+        "cidade": "São Paulo",
+        "uf": "SP",
+        "cep": "01000-000",
+        "email": "contato@exemplo.org",
+        "paginaWeb": "https://exemplo.org",
+        "natureza": "Pública",
+        "especificacao": ""
+      },
+      "representanteLegal": {
+        "nome": "João da Silva",
+        "cargo": "Diretor",
+        "telefone": "(11) 98765-4321",
+        "email": "joao.silva@exemplo.org"
+      },
+      "contato": {
+        "nome": "Maria Oliveira",
+        "cargo": "Analista de RH",
+        "telefone": "(11) 91234-5678",
+        "email": "maria.oliveira@exemplo.org"
+      },
+      "criteriosParticipacao": [
+        {
+          "descricao": "Ser públicas, privadas ou de economia mista, com 100 ou mais empregadas e empregados, com personalidade jurídica própria.",
+          "atendido": false
+        },
+        {
+          "descricao": "Estar em dia com as obrigações trabalhistas.",
+          "atendido": false
+        },
+        {
+          "descricao": "Não ter sofrido denúncias de trabalho escravo.",
+          "atendido": false
+        },
+        {
+          "descricao": "Não ter denúncias não apuradas de assédio e/ou discriminação.",
+          "atendido": false
+        },
+        {
+          "descricao": "As empresas privadas deverão ter publicado relatórios da transparência salarial e remuneratória conforme a Lei n. 14.611/2023.",
+          "atendido": false
+        }
+      ]
     }
   ]
 }

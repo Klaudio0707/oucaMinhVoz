@@ -1,14 +1,14 @@
-.register_container {
-  background: linear-gradient(135deg, #8e44ad, #3498db); /* Tons lilás e azul */
+.container {
+  background: linear-gradient(135deg, #8e44ad, #3498db); /* Gradiente lilás e azul */
   padding: 10%;
-  min-height: 100vh; /* Preencher a altura total da viewport */
+  min-height: 100vh; /* Altura total da viewport */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.register-form {
-  max-width: 400px;
+.dados {
+  max-width: 500px; /* Largura máxima ajustada */
   width: 100%;
   padding: 30px;
   background-color: #ffffff; /* Fundo branco */
@@ -17,56 +17,48 @@
   font-family: Arial, sans-serif;
 }
 
-.register-form h2 {
+.dados h2 {
   text-align: center;
   margin-bottom: 20px;
   font-size: 24px;
   color: #333333; /* Título em tom escuro */
 }
 
-.register-form input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+.dados p {
   font-size: 16px;
-  color: #555555; /* Texto cinza */
-  transition: border-color 0.3s;
+  color: #555555; /* Texto em tom cinza */
+  margin-bottom: 15px;
 }
 
-.register-form input:focus {
-  border-color: #8e44ad; /* Cor de foco lilás */
-  outline: none;
-}
-
-.criterios-section {
+.criterios {
   margin-top: 20px;
 }
 
-.criterios-section h3 {
+.criterios h3 {
   font-size: 18px;
   color: #444444; /* Subtítulo em tom médio */
   margin-bottom: 10px;
 }
 
-.criterios-section label {
-  display: inline-flex; /* Flex container em linha */
-  align-items: center; /* Alinhamento vertical */
+.criterios ul {
+  list-style: none;
+  padding: 0;
+}
+
+.criterios li {
   font-size: 14px;
   color: #666666; /* Texto em tom mais claro */
   margin-bottom: 8px;
 }
 
-.criterios-section input[type="checkbox"] {
-  margin: 0 1px auto auto; /* Ajusta o espaço entre a caixa e o texto */
-  accent-color: #8e44ad; /* Cor da marcação */
+.botoes {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
 }
 
-
-
-.register-form button {
-  width: 100%;
+.botoes button {
+  flex: 1;
   padding: 12px;
   background-color: #8e44ad; /* Lilás */
   color: white;
@@ -76,36 +68,43 @@
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s;
+  margin: 0 5px;
 }
 
-.register-form button:hover {
+.botoes button:hover {
   background-color: #7d3c98; /* Lilás mais escuro */
 }
 
-.register-form button:focus {
+.botoes button:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(142, 68, 173, 0.3); /* Foco visível */
 }
 
+.error {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+}
+
 @media (max-width: 480px) {
-  .register-form {
+  .dados {
     padding: 15px;
   }
 
-  .register-form h2 {
+  .dados h2 {
     font-size: 20px;
   }
 
-  .register-form input {
+  .dados p {
     font-size: 14px;
   }
 
-  .register-form button {
+  .botoes button {
     font-size: 14px;
     padding: 10px;
   }
 
-  .criterios-section h3 {
+  .criterios h3 {
     font-size: 16px;
   }
 }

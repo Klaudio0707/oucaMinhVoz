@@ -48,8 +48,8 @@ function Dashboard() {
     { to: "/Status", label: "Ver Status dos Documentos", icon: <FaFileAlt /> },
     { to: "/DashboardGovernoII", label: "Dashboard Governo2", icon: <FaTachometerAlt /> },
     { to: "/DashboardGoverno", label: "Dashboard Governo", icon: <FaTachometerAlt /> },
-    { to: "/ProgramaEquidadeForm", label: "Inscrição", icon: <FaClipboardList /> },
-    { to: "/Register", label: "Cadastro", icon: <FaUserPlus /> },
+    { to: "/InscricaoPrograma", label: "Inscrição", icon: <FaClipboardList /> },
+    { to: "/Dados", label: "Dados", icon: <FaUserPlus /> },
     { to: "/FichaInteresse", label: "Ficha de Interesse", icon: <FaClipboardCheck /> },
     { to: "/PlanoAcao", label: "Plano de Ação", icon: <FaChartLine /> },
   ];
@@ -59,18 +59,19 @@ function Dashboard() {
       {/* Barra superior com informações do usuário */}
       <div className={style["user-bar"]}>
         <div>
-          <strong>Bem-vindo, {userData.nomeUser || 'Usuário'}!</strong><br/>
-          <div><strong>Empresa:</strong> {userData.nomeEnterprise || 'Empresa'}!</div>
+          <strong>Bem-vindo, {userData.nomeRepresentante|| 'Usuário'}!</strong><br/>
+          <div><strong>Empresa:</strong> {userData.nomeEmpresa || 'Empresa'}!</div>
         </div>
-        <div>Email: {userData.email || 'não informado'}</div>
-      </div>
-
-      {/* Barra de Progresso */}
-      <div className={style["progress-bar-container"]}>
+        <div className={style["progress-bar-container"]}>
         <div className={style["progress-bar"]} style={{ width: `${progressPercentage}%` }}>
           <span className={style["progress-text"]}>{`Cadastro em andamento: ${progressPercentage.toFixed(0)}%`}</span>
         </div>
       </div>
+        <div>Email: {userData.email || 'não informado'}</div>
+      </div>
+
+      {/* Barra de Progresso */}
+      
 
       {/* Links em forma de cards */}
       <div className={style["link-list"]}>

@@ -1,7 +1,7 @@
 const BASE_URL = 'http://localhost:5001';
 const ENDPOINTS = {
   USERS: `${BASE_URL}/users`,
-  DOCUMENTOS: `${BASE_URL}/documentos`,
+  FORMULARIOS: `${BASE_URL}/formularios`,
 };
 
 // Configuração padrão para requisições
@@ -78,7 +78,7 @@ const fetchWithConfig = async (url, options = {}) => {
 // API principal
 const api = {
   auth: {
-    async login(email, senha) {
+    async login(email, senha, nomeEmpresa, nomeRepresentante) {
       try {
         const response = await fetchWithConfig(`${ENDPOINTS.USERS}`, {
           method: 'GET',
@@ -134,58 +134,50 @@ const api = {
     async listar() {
       return fetchWithConfig(ENDPOINTS.USERS);
     },
+
+    async cadastrar(userData) {
+      return fetchWithConfig(ENDPOINTS.USERS, {
+        method: 'POST',
+        body: JSON.stringify(userData),
+      });
+    },
   },
 
-  documentos: {
+  formularios: {
     async listar() {
-      return fetchWithConfig(ENDPOINTS.DOCUMENTOS);
+      return fetchWithConfig(ENDPOINTS.FORMULARIOS);
     },
 
-    async enviar(titulo, descricao) {
-      const userId = api.auth.getUserId();
-
-      if (!userId) {
-        throw new APIError('Usuário não autenticado');
-      }
-
-      return fetchWithConfig(ENDPOINTS.DOCUMENTOS, {
+    async criar(dadosFormulario) {
+      return fetchWithConfig(ENDPOINTS.FORMULARIOS, {
         method: 'POST',
-        body: JSON.stringify({
-          titulo,
-          descricao,
-          userId,
-          status: 'Pendente',
-          dataCriacao: new Date().toISOString(),
-        }),
+        body: JSON.stringify(dadosFormulario),
       });
     },
 
-    async atualizarStatus(id, status) {
+    async atualizar(id, dadosAtualizados) {
       if (!id) {
-        throw new APIError('ID do documento é obrigatório');
+        throw new APIError('ID do formulário é obrigatório');
       }
 
-      return fetchWithConfig(`${ENDPOINTS.DOCUMENTOS}/${id}`, {
+      return fetchWithConfig(`${ENDPOINTS.FORMULARIOS}/${id}`, {
         method: 'PATCH',
-        body: JSON.stringify({
-          status,
-          dataAtualizacao: new Date().toISOString(),
-        }),
+        body: JSON.stringify(dadosAtualizados),
       });
     },
 
     async excluir(id) {
-      return fetchWithConfig(`${ENDPOINTS.DOCUMENTOS}/${id}`, {
+      return fetchWithConfig(`${ENDPOINTS.FORMULARIOS}/${id}`, {
         method: 'DELETE',
       });
     },
 
     async buscarPorId(id) {
       if (!id) {
-        throw new APIError('ID do documento é obrigatório');
+        throw new APIError('ID do formulário é obrigatório');
       }
 
-      return fetchWithConfig(`${ENDPOINTS.DOCUMENTOS}/${id}`);
+      return fetchWithConfig(`${ENDPOINTS.FORMULARIOS}/${id}`);
     },
   },
 };

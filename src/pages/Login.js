@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import api from '../apiFake/api'; // Certifique-se de que o caminho está correto
-import './Styles/Login.css';
+import  style from './Styles/Login.module.css';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -34,7 +34,7 @@ function Login() {
   };
 
   return (
-    <div className="login-container">
+    <div className={style["login-container"]}>
       <form className="login-form" onSubmit={handleSubmit}>
         <h2>Login</h2>
         {erro && <p className="error-message">{erro}</p>}

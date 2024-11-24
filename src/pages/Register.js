@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import "./Styles/Register.css";
+import styles from './Styles/Register.module.css'; // Atualizado para CSS Module
 
 function Register() {
   const [nome, setNome] = useState('');
@@ -14,24 +14,39 @@ function Register() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ nome, email, senha }),
-
-
     });
     if (response.ok) {
       localStorage.setItem('token', 'token-simulado');
-        navigate('/dashboard');
-
+      navigate('/dashboard');
     } else {
       alert('Erro no cadastro');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles["register-form"]} onSubmit={handleSubmit}>
       <h2>Cadastro</h2>
-      <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} placeholder="Nome da Empresa" required />
-      <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
-      <input type="password" value={senha} onChange={(e) => setSenha(e.target.value)} placeholder="Senha" required />
+      <input
+        type="text"
+        value={nome}
+        onChange={(e) => setNome(e.target.value)}
+        placeholder="Nome da Empresa"
+        required
+      />
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Email"
+        required
+      />
+      <input
+        type="password"
+        value={senha}
+        onChange={(e) => setSenha(e.target.value)}
+        placeholder="Senha"
+        required
+      />
       <button type="submit">Cadastrar</button>
     </form>
   );

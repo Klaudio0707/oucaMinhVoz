@@ -1,5 +1,6 @@
 import React from "react";
-import "./Styles/PlanoAcao.css";
+import styles from "./Styles/PlanoAcao.module.css";
+
 
 function PlanoAcao() {
   const handleSubmit = (e) => {
@@ -9,7 +10,7 @@ function PlanoAcao() {
 
   return (
  
-      <div className="plano-acao-container">
+    <div className={styles['plano-acao-container']}>
         <h1 className="title">Plano de Ação – 7ª Edição</h1>
 
         <form className="form-container" onSubmit={handleSubmit}>

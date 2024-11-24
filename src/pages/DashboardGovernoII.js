@@ -11,7 +11,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import "./Styles/Dashboard_Governo.css";
+import style from"./Styles/Dashboard_Governo.module.css";
 
 const rejectionData = [
   { reason: "Documentação incompleta", percentage: 35 },
@@ -29,7 +29,7 @@ const adoptionData = [
 
 function Dashboard() {
   return (
-    <div className="dashboard-container">
+    <div className={style["dashboard-container"]}>
       <h1 className="dashboard-title">Dashboard - Programa Pró-Equidade</h1>
 
       {/* Cards de Resumo */}

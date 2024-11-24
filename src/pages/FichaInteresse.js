@@ -1,9 +1,9 @@
 import React from "react";
-import "./Styles/FichaInteresse.css";
+import  style from"./Styles/FichaInteresse.module.css";
 
 function FichaInteresse() {
   return (
-    <div className="ficha-interesse-container">
+    <div className={style["ficha-interesse-container"]}>
       <h1 className="title">
         Ficha de Interesse em Participar do Programa Pró-Equidade de Gênero e Raça - 7ª Edição
       </h1>

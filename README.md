@@ -6,6 +6,9 @@ projeto de conclusão da faculdade.
 Sistema de Feedback Anônimo e Validação de Segurança para Ambientes de Trabalho
 
 Esse sistema permitiria que funcionários e funcionários em potencial avaliem e deem feedback sobre a cultura de igualdade de gênero nas instituições, gerando dados valiosos para o governo e para as próprias instituições.
+execução do backend: json-server --watch db.json --port 5001
+
+
 =======
 # Getting Started with Create React App
 

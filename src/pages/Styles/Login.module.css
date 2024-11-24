@@ -1,4 +1,4 @@
-/* Fundo da página com gradiente */
+/* Fundo da página com gradiente
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -7,7 +7,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
 /* Container do formulário de login */
 .login-container {

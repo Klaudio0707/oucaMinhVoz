@@ -1,0 +1,123 @@
+/* Styles/PlanoAcao.css */
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+  color: #333;
+  overflow-x: hidden;
+}
+
+.plano-acao-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px auto;
+  background: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow-y: auto;
+}
+
+.title {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #4a90e2;
+  margin-bottom: 20px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.form-field {
+  margin-bottom: 15px;
+}
+
+.label-block {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.input-field.small {
+  width: calc(33% - 10px);
+}
+
+.textarea-field {
+  width: 100%;
+  min-height: 100px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.radio-group,
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.radio-label,
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.eixo-container {
+  margin-bottom: 20px;
+}
+
+.eixo-title {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.submit-button {
+  padding: 12px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #4a90e2;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #357ab7;
+}
+
+@media (max-width: 768px) {
+  .input-field.small {
+    width: 100%;
+  }
+}

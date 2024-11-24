@@ -12,6 +12,7 @@ import FichaInteresse from './pages/FichaInteresse';
 import DashboardGovernoII from './pages/DashboardGovernoII';
 import PlanoAcao from './pages/PlanoAcao';
 import Dados from './pages/Dados';
+import GlobalButtons from './pages/Components/GlobalButtons';
 import './App.css';
 
 function ProtectedRoute({ children }) {
@@ -23,8 +24,8 @@ function ProtectedRoute({ children }) {
 function App() {
   return (
     <UserProvider>
-
     <Router>
+   
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/Register" element={<Register />} />
@@ -33,6 +34,7 @@ function App() {
           element={
             <ProtectedRoute>
               <Dashboard />
+              <GlobalButtons />
             </ProtectedRoute>
           }
         />
@@ -41,6 +43,7 @@ function App() {
           element={
             <ProtectedRoute>
               <EnviarDocumento />
+              <GlobalButtons />
             </ProtectedRoute>
           }
           />
@@ -49,6 +52,7 @@ function App() {
           element={
             <ProtectedRoute>
               <StatusDocumentos />
+              <GlobalButtons />
             </ProtectedRoute>
           }
           />
@@ -57,6 +61,7 @@ function App() {
           element={
             <ProtectedRoute>
               <GovernoDashboard />
+              <GlobalButtons />
             </ProtectedRoute>
           }
         />
@@ -65,6 +70,7 @@ function App() {
           element={
             <ProtectedRoute>
               <InscricaoPrograma />
+              <GlobalButtons />
             </ProtectedRoute>
           }
           />
@@ -73,6 +79,7 @@ function App() {
           element={
             <ProtectedRoute>
               <Dados />
+              <GlobalButtons />
             </ProtectedRoute>
           }
           />
@@ -81,6 +88,7 @@ function App() {
           element={
             <ProtectedRoute>
               <PlanoAcao />
+              <GlobalButtons />
             </ProtectedRoute>
           }
           />
@@ -89,6 +97,7 @@ function App() {
           element={
             <ProtectedRoute>
               <FichaInteresse />
+              <GlobalButtons />
             </ProtectedRoute>
           }
         />
@@ -97,6 +106,7 @@ function App() {
           element={
             <ProtectedRoute>
               <DashboardGovernoII />
+              <GlobalButtons />
             </ProtectedRoute>
           }
           />

@@ -5,7 +5,7 @@ import style from './Styles/dashBoard.module.css';
 import api from '../apiFake/api.js';
 
 function Dashboard() {
-  const [progress, setProgress] = useState({ totalSteps: 5, completedSteps: 0 });
+  const [progress, setProgress] = useState({ totalSteps: 5, completedSteps: 3 });
   const [userData, setUserData] = useState({ nome: '', email: '',  });
   const [loading, setLoading] = useState(false);
 
@@ -59,20 +59,32 @@ function Dashboard() {
       {/* Barra superior com informações do usuário */}
       <div className={style["user-bar"]}>
         <div>
-          <strong>Bem-vindo, {userData.nomeRepresentante|| 'Usuário'}!</strong><br/>
-          <div><strong>Empresa:</strong> {userData.nomeEmpresa || 'Empresa'}!</div>
+          <strong>Bem-vindo, {userData.nomeRepresentante || "Usuário"}!</strong>
+          <strong>Bem-vindo, {userData.nomeRepresentante || "Usuário"}!</strong>
+          <br />
+          <span>
+            <strong>Empresa:</strong>{" "}
+            {userData.nomeEmpresa?.split(" ").slice(0, 2).join(" ") || "Empresa"}
+          </span>
+          
         </div>
-        <div className={style["progress-bar-container"]}>
-        <div className={style["progress-bar"]} style={{ width: `${progressPercentage}%` }}>
-          <span className={style["progress-text"]}>{`Cadastro em andamento: ${progressPercentage.toFixed(0)}%`}</span>
-        </div>
-      </div>
-        <div>Email: {userData.email || 'não informado'}</div>
-      </div>
-
-      {/* Barra de Progresso */}
+        <div className={style["user-email"]}>{userData.email || "Email não informado"}</div>
+        <strong>CNPJ: {userData.cnpj?.split(" ").slice(0,3).join(".") || "cnpj"}</strong>
       
-
+      </div>
+  
+      {/* Barra de progresso centralizada */}
+      <div className={style["progress-bar-container"]}>
+        <div
+          className={style["progress-bar"]}
+          style={{ width: `${progressPercentage}%` }}
+        >
+          <span className={style["progress-text"]}>
+            {`Cadastro em andamento: ${progressPercentage.toFixed(0)}%`}
+          </span>
+        </div>
+      </div>
+  
       {/* Links em forma de cards */}
       <div className={style["link-list"]}>
         {links.map((link, index) => (
@@ -83,15 +95,16 @@ function Dashboard() {
             onClick={link.action || null}
           >
             <div className={style["icon"]}>{link.icon}</div>
-            <span>{loading && link.to === "/Form-Envio" ? 'Enviando...' : link.label}</span>
+            <span>
+              {loading && link.to === "/Form-Envio" ? "Enviando..." : link.label}
+            </span>
           </Link>
         ))}
       </div>
     </div>
   );
 }
-
-export default Dashboard;
+  export default Dashboard;
 
 
 

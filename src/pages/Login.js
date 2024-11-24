@@ -27,7 +27,7 @@ function Login() {
       setUser(user);
 
       // Redireciona para a página de dados
-      navigate('/Dados');
+      navigate('/Dashboard');
     } catch (error) {
       setErro(error.message || 'Erro ao fazer login. Verifique suas credenciais e tente novamente.');
       console.error('Erro ao autenticar:', error);

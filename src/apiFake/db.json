@@ -47,6 +47,22 @@
         "criterio4": false,
         "criterio5": false
       }
+    },
+    {
+      "id": "a910",
+      "nomeRepresentante": "Frederico",
+      "email": "contato@exemplo.com",
+      "senha": "123456",
+      "cnpj": "09257659000100",
+      "nomeEmpresa": "CONTINENTAL COMERCIO E INDUSTRIA DE INGREDIENTES ALIMENTICIOS LTDA",
+      "endereco": "ARTUR MOURA, RECIFE - PE",
+      "criterios": {
+        "criterio1": true,
+        "criterio2": true,
+        "criterio3": true,
+        "criterio4": true,
+        "criterio5": true
+      }
     }
   ],
   "formularios": [

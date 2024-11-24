@@ -15,7 +15,7 @@ const CONFIG = {
 class APIError extends Error {
   constructor(message, status) {
     super(message);
-    this.name = 'APIError';
+    this.nameUser = 'APIError';
     this.status = status;
   }
 }

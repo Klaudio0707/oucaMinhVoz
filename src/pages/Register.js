@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import styles from './Styles/Register.module.css'; // Atualizado para CSS Module
 
 function Register() {
-  const [nome, setNome] = useState('');
+  const [nomeUser, setNomeUser] = useState('');
+  const [nomeEnterprise, setNomeEnterprise] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ function Register() {
     const response = await fetch('http://localhost:5001/users', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nome, email, senha }),
+      body: JSON.stringify({ nomeUser,nomeEnterprise, email, senha }),
     });
     if (response.ok) {
       localStorage.setItem('token', 'token-simulado');
@@ -28,9 +29,16 @@ function Register() {
       <h2>Cadastro</h2>
       <input
         type="text"
-        value={nome}
-        onChange={(e) => setNome(e.target.value)}
+        value={nomeEnterprise}
+        onChange={(e) => setNomeEnterprise(e.target.value)}
         placeholder="Nome da Empresa"
+        required
+      />
+      <input
+        type="text"
+        value={nomeUser}
+        onChange={(e) => setNomeUser(e.target.value)}
+        placeholder="Nome da Usúario"
         required
       />
       <input

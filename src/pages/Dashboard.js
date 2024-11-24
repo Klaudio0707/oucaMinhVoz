@@ -6,7 +6,7 @@ import api from '../apiFake/api.js';
 
 function Dashboard() {
   const [progress, setProgress] = useState({ totalSteps: 5, completedSteps: 0 });
-  const [userData, setUserData] = useState({ nome: '', email: '' });
+  const [userData, setUserData] = useState({ nome: '', email: '',  });
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -59,7 +59,8 @@ function Dashboard() {
       {/* Barra superior com informações do usuário */}
       <div className={style["user-bar"]}>
         <div>
-          <strong>Bem-vindo, {userData.nome || 'Usuário'}!</strong>
+          <strong>Bem-vindo, {userData.nomeUser || 'Usuário'}!</strong><br/>
+          <div><strong>Empresa:</strong> {userData.nomeEnterprise || 'Empresa'}!</div>
         </div>
         <div>Email: {userData.email || 'não informado'}</div>
       </div>

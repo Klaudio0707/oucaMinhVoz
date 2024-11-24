@@ -1,12 +1,18 @@
 .dashboard-container {
   padding: 20px;
+  min-height: 100vh;
   font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #8e44ad, #3498db); /* Tons lilás e azul */
 }
 
 h2 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 2px;
+  color: #ffffff; /* Cor lilás para destaque */
+  margin-bottom: 40px;
+  
 }
+
 
 /* Barra de Progresso */
 .progress-bar-container {
@@ -17,6 +23,19 @@ h2 {
   margin: 20px 0;
   position: relative;
   height: 30px;
+}
+/* Barra superior com informações do usuário */
+.user-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.9); /* Fundo translúcido */
+  color: #333;
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
 }
 
 .progress-bar {
@@ -30,9 +49,9 @@ h2 {
 }
 
 .progress-text {
-  color: #fff;
+  color: #4d4d4d;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 12px;
   position: absolute;
   width: 100%;
   text-align: center;
@@ -71,8 +90,10 @@ h2 {
   margin-bottom: 10px;
 }
 
+/* Indicador de carregamento */
 .card span {
-  font-size: 1rem;
-  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 

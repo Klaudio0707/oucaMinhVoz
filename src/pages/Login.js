@@ -35,10 +35,10 @@ function Login() {
 
   return (
     <div className={style["login-container"]}>
-      <form className="login-form" onSubmit={handleSubmit}>
+      <form className={style["login-form"]} onSubmit={handleSubmit}>
         <h2>Login</h2>
         {erro && <p className="error-message">{erro}</p>}
-        <div className="form-group">
+        <div className={style["form-group"]}>
           <label htmlFor="email">Email</label>
           <input
             type="email"
@@ -49,7 +49,7 @@ function Login() {
             required
           />
         </div>
-        <div className="form-group">
+        <div className={style["form-group"]}>
           <label htmlFor="senha">Senha</label>
           <input
             type="password"
@@ -60,10 +60,10 @@ function Login() {
             required
           />
         </div>
-        <button type="submit" className="btn-submit" disabled={loading}>
+        <button type="submit" className={style["btn-submit"]} disabled={loading}>
           {loading ? 'Entrando...' : 'Entrar'}
         </button>
-        <Link to="/Register" className="btn-register">Cadastrar</Link>
+        <Link to="/Register" className={style["btn-register"]}>Cadastrar</Link>
       </form>
     </div>
   );

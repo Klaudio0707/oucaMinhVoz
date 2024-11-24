@@ -120,6 +120,22 @@ const api = {
     },
   },
 
+  users: {
+    async get() {
+      const userId = api.auth.getUserId();
+
+      if (!userId) {
+        throw new APIError('Usuário não autenticado');
+      }
+
+      return fetchWithConfig(`${ENDPOINTS.USERS}/${userId}`);
+    },
+
+    async listar() {
+      return fetchWithConfig(ENDPOINTS.USERS);
+    },
+  },
+
   documentos: {
     async listar() {
       return fetchWithConfig(ENDPOINTS.DOCUMENTOS);
@@ -175,3 +191,4 @@ const api = {
 };
 
 export default api;
+

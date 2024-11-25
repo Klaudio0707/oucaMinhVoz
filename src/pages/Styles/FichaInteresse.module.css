@@ -1,37 +1,26 @@
-/* Estilo principal do container */
 .ficha-interesse-container {
-  font-family: Arial, sans-serif;
-  background-color: #f7f7f7; /* Cor de fundo padrão */
-  color: #333;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 20px;
-  border-radius: 8px;
-  max-width: 800px;
-  margin: 20px auto;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
 }
 
-/* Títulos */
 .title {
-  font-size: 1.5rem;
-  color: #8e44ad; /* Roxo para destacar o título */
-  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
   margin-bottom: 10px;
 }
 
 .subtitle {
-  font-size: 0.9rem;
-  text-align: center;
-  color: #555;
+  font-size: 1rem;
+  margin-bottom: 20px;
 }
 
 .contact-info {
   font-size: 0.9rem;
-  text-align: center;
   margin-bottom: 20px;
-  color: #555;
 }
 
-/* Formulário */
 .ficha-form {
   display: flex;
   flex-direction: column;
@@ -39,88 +28,111 @@
 }
 
 .section {
-  background-color: #ffffff; /* Fundo branco */
-  padding: 15px;
+  border: 1px solid #ddd;
+  padding: 20px;
   border-radius: 8px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
 }
 
 .section-title {
-  font-size: 1.2rem;
-  color: #3498db; /* Azul para destaque */
-  margin-bottom: 10px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 15px;
 }
 
-/* Labels e Inputs */
 label {
   display: block;
+  font-size: 1rem;
   margin-bottom: 10px;
-  font-size: 0.9rem;
 }
 
 .input-field {
   width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 10px;
   margin-top: 5px;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
-.input-field.small {
-  width: calc(33.333% - 10px); /* Ajuste para múltiplos inputs em linha */
+.small {
+  width: 48%;
 }
 
 .row {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
   gap: 10px;
-  margin-bottom: 10px;
 }
 
-/* Grupo de botões de rádio */
 .radio-group {
-  margin: 10px 0;
-  font-size: 0.9rem;
+  margin-top: 10px;
 }
 
 .radio-group label {
-  margin-right: 10px;
+  display: inline-block;
+  margin-right: 15px;
 }
 
-/* Botão de envio */
 .submit-button {
-  background-color: #8e44ad; /* Roxo */
-  color: #ffffff;
-  font-size: 1rem;
-  padding: 10px 15px;
+  width: 100%;
+  padding: 15px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  background-color: #4CAF50;
+  color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s;
-  align-self: center;
+  transition: background-color 0.3s ease;
 }
 
 .submit-button:hover {
-  background-color: #732d91; /* Roxo mais escuro no hover */
+  background-color: #45a049;
 }
 
 /* Responsividade */
-@media (max-width: 600px) {
+@media (max-width: 1024px) {
   .ficha-interesse-container {
     padding: 15px;
   }
 
   .title {
-    font-size: 1.2rem;
+    font-size: 1.8rem;
+  }
+
+  .section {
+    padding: 15px;
+  }
+
+  .input-field {
+    font-size: 0.9rem;
+  }
+
+  .submit-button {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .ficha-interesse-container {
+    padding: 10px;
+  }
+
+  .title {
+    font-size: 1.6rem;
   }
 
   .section {
     padding: 10px;
   }
 
-  .input-field.small {
-    width: 100%; /* Inputs em linha ocupam toda a largura no celular */
+  .input-field {
+    font-size: 0.9rem;
+  }
+
+  .small {
+    width: 100%;
   }
 
   .row {
@@ -128,6 +140,33 @@ label {
   }
 
   .submit-button {
-    width: 100%; /* Botão ocupa toda a largura no celular */
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ficha-interesse-container {
+    padding: 5px;
+  }
+
+  .title {
+    font-size: 1.4rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+
+  .contact-info {
+    font-size: 0.8rem;
+  }
+
+  .input-field {
+    font-size: 0.85rem;
+  }
+
+  .submit-button {
+    font-size: 0.9rem;
+    padding: 12px;
   }
 }

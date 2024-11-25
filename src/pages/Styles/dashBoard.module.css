@@ -90,3 +90,20 @@
   color: #007BFF; /* Azul para destaque */
   margin-bottom: 10px;
 }
+@media (max-width: 600px) {
+  .dashboard-container {
+    padding: 8px; /* Menor padding */
+  }
+
+  .user-bar {
+    font-size: 0.8rem; /* Texto menor */
+  }
+
+  .progress-bar-container {
+    height: 18px; /* Altura ainda menor */
+  }
+
+  .card {
+    padding: 10px; /* Reduzido ainda mais */
+  }
+}

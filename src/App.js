@@ -34,7 +34,6 @@ function App() {
           element={
             <ProtectedRoute>
               <Dashboard />
-              <GlobalButtons />
             </ProtectedRoute>
           }
         />

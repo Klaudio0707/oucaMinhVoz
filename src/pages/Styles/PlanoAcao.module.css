@@ -5,7 +5,7 @@ body {
   line-height: 1.6;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f9;
+  background: linear-gradient(135deg, #8e44ad, #3498db);
   color: #333;
   overflow-x: hidden;
 }

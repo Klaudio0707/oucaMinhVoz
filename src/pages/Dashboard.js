@@ -5,15 +5,12 @@ import style from './Styles/dashBoard.module.css';
 import api from '../apiFake/api.js';
 
 function Dashboard() {
-  const [progress, setProgress] = useState({ totalSteps: 5, completedSteps: 3 });
-  const [userData, setUserData] = useState({ nome: '', email: '',  });
+  const [progress, setProgress] = useState({ totalSteps: 5, completedSteps: 0 });
+  const [userData, setUserData] = useState({ nome: '', email: '' });
   const [loading, setLoading] = useState(false);
+  const [formsSubmitted, setFormsSubmitted] = useState(0); // Novo estado para formulários enviados
 
   useEffect(() => {
-/**
- * Fetches user data from the API and updates the state with the retrieved information.
- * Logs an error message to the console if the API request fails.
- */
     async function fetchUserData() {
       try {
         const user = await api.users.get(); // Simula a busca de dados do usuário
@@ -25,29 +22,30 @@ function Dashboard() {
     fetchUserData();
   }, []);
 
-  const handleEnviarDocumento = async () => {
+  const handleFormSubmit = () => {
+    // Simula o envio de um formulário
     setLoading(true);
-    try {
-      // Simula o envio do documento
-      await api.documentos.enviar('Novo Documento', 'Descrição de exemplo');
-      setProgress((prev) => ({
-        ...prev,
-        completedSteps: Math.min(prev.completedSteps + 1, prev.totalSteps),
-      }));
-    } catch (error) {
-      console.error('Erro ao enviar documento:', error.message);
-    } finally {
+    setTimeout(() => {
+      setFormsSubmitted((prev) => prev + 1); // Atualiza a contagem de formulários enviados
       setLoading(false);
-    }
+    }, 1000); // Simula um atraso no envio
   };
+
+  useEffect(() => {
+    // Atualiza o progresso toda vez que a contagem de formulários enviados mudar
+    setProgress((prev) => ({
+      ...prev,
+      completedSteps: formsSubmitted,
+    }));
+  }, [formsSubmitted]);
 
   const progressPercentage = (progress.completedSteps / progress.totalSteps) * 100;
 
   const links = [
-    { to: "/Form-Envio", label: "Enviar Documento", icon: <FaPaperPlane />, action: handleEnviarDocumento },
+    { to: "/Form-Envio", label: "Enviar Documento", icon: <FaPaperPlane />, action: handleFormSubmit },
     { to: "/Status", label: "Ver Status dos Documentos", icon: <FaFileAlt /> },
-    { to: "/DashboardGovernoII", label: "Dashboard Governo2", icon: <FaTachometerAlt /> },
-    { to: "/DashboardGoverno", label: "Dashboard Governo", icon: <FaTachometerAlt /> },
+    { to: "/DashboardGovernoII", label: "Dashboard Governo", icon: <FaTachometerAlt /> },
+   
     { to: "/InscricaoPrograma", label: "Inscrição", icon: <FaClipboardList /> },
     { to: "/Dados", label: "Dados", icon: <FaUserPlus /> },
     { to: "/FichaInteresse", label: "Ficha de Interesse", icon: <FaClipboardCheck /> },
@@ -60,19 +58,16 @@ function Dashboard() {
       <div className={style["user-bar"]}>
         <div>
           <strong>Bem-vindo, {userData.nomeRepresentante || "Usuário"}!</strong>
-          <strong>Bem-vindo, {userData.nomeRepresentante || "Usuário"}!</strong>
           <br />
           <span>
             <strong>Empresa:</strong>{" "}
             {userData.nomeEmpresa?.split(" ").slice(0, 2).join(" ") || "Empresa"}
           </span>
-          
         </div>
         <div className={style["user-email"]}>{userData.email || "Email não informado"}</div>
-        <strong>CNPJ: {userData.cnpj?.split(" ").slice(0,3).join(".") || "cnpj"}</strong>
-      
+        <strong>CNPJ: {userData.cnpj?.split(" ").slice(0, 3).join(".") || "cnpj"}</strong>
       </div>
-  
+
       {/* Barra de progresso centralizada */}
       <div className={style["progress-bar-container"]}>
         <div
@@ -84,7 +79,7 @@ function Dashboard() {
           </span>
         </div>
       </div>
-  
+
       {/* Links em forma de cards */}
       <div className={style["link-list"]}>
         {links.map((link, index) => (
@@ -104,7 +99,9 @@ function Dashboard() {
     </div>
   );
 }
-  export default Dashboard;
+
+export default Dashboard;
+
 
 
 

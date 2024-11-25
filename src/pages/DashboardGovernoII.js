@@ -1,4 +1,5 @@
 import React from "react";
+import style from "./Styles/Dashboard_GovII.module.css";
 import {
   BarChart,
   Bar,
@@ -11,7 +12,6 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import style from"./Styles/Dashboard_Governo.module.css";
 
 const rejectionData = [
   { reason: "Documentação incompleta", percentage: 35 },
@@ -27,27 +27,27 @@ const adoptionData = [
   { year: "2024", companies: 200 },
 ];
 
-function Dashboard() {
+function DashboardGovII() {
   return (
     <div className={style["dashboard-container"]}>
-      <h1 className="dashboard-title">Dashboard - Programa Pró-Equidade</h1>
+      <h1 className={style["dashboard-title"]}>Dashboard - Programa Pró-Equidade</h1>
 
       {/* Cards de Resumo */}
-      <div className="summary-cards">
-        <div className="card">
+      <div className={style["summary-cards"]}>
+        <div className={style["card"]}>
           <h2>Empresas Aprovadas</h2>
-          <p className="card-value">150</p>
+          <p className={style["card-value"]}>150</p>
         </div>
-        <div className="card">
+        <div className={style["card"]}>
           <h2>Empresas Rejeitadas</h2>
-          <p className="card-value">45</p>
+          <p className={style["card-value"]}>45</p>
         </div>
       </div>
 
       {/* Gráficos */}
-      <div className="charts-container">
+      <div className={style["charts-container"]}>
         {/* Principais motivos de rejeição */}
-        <div className="chart">
+        <div className={style["chart"]}>
           <h2>Principais Motivos de Rejeição</h2>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={rejectionData} layout="vertical" margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
@@ -61,7 +61,7 @@ function Dashboard() {
         </div>
 
         {/* Evolução no número de adesões */}
-        <div className="chart">
+        <div className={style["chart"]}>
           <h2>Evolução no Número de Adesões</h2>
           <ResponsiveContainer width="100%" height={300}>
             <LineChart data={adoptionData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
@@ -77,9 +77,9 @@ function Dashboard() {
       </div>
 
       {/* Tabela Resumida */}
-      <div className="table-container">
+      <div className={style["table-container"]}>
         <h2>Resumo de Empresas</h2>
-        <table className="summary-table">
+        <table className={style["summary-table"]}>
           <thead>
             <tr>
               <th>Empresa</th>
@@ -110,4 +110,5 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default DashboardGovII;
+

@@ -6,8 +6,11 @@ function Register() {
   const [nomeRepresentante, setNomeRepresentante] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const [telefone, setTelefone] = useState("");
   const [cnpj, setCnpj] = useState("");
-  const [empresaData, setEmpresaData] = useState(null); // Dados retornados da consulta
+  const [empresaData, setEmpresaData] = useState(null); 
+  // Dados retornados da consulta 
+ 
   const [criterios, setCriterios] = useState({
     criterio1: false,
     criterio2: false,
@@ -15,6 +18,7 @@ function Register() {
     criterio4: false,
     criterio5: false,
   });
+  
   const [error, setError] = useState(""); // Para exibir mensagens de erro
   const [loading, setLoading] = useState(false); // Estado de carregamento para o botão enviar
 
@@ -61,9 +65,10 @@ function Register() {
         nomeRepresentante,
         email,
         senha,
+        telefone,
         cnpj,
         nomeEmpresa: data.razao_social,
-        endereco: `${data.logradouro}, ${data.municipio} - ${data.uf}`,
+        endereco: `${data.logradouro}, ${data.numero}, ${data.municipio}, ${data.numero}, - ${data.uf}`,
         criterios,
       };
 
@@ -76,6 +81,7 @@ function Register() {
 
       if (userResponse.ok) {
         localStorage.setItem("token", "token-simulado");
+        
         navigate("/dashboard");
       } else {
         setError("Erro ao cadastrar. Tente novamente.");
@@ -195,8 +201,9 @@ function Register() {
           <div className={styles["empresa-data"]}>
             <h3>Dados da Empresa</h3>
             <p><strong>Razão Social:</strong> {empresaData.razao_social}</p>
-            <p><strong>Endereço:</strong> {empresaData.logradouro}, {empresaData.municipio} - {empresaData.uf}</p>
+            <p><strong>Endereço:</strong> {empresaData.logradouro}, {empresaData.numero}, {empresaData.municipio} - {empresaData.uf}</p>
             <p><strong>CNPJ:</strong> {empresaData.cnpj}</p>
+            <p><strong>Telefone:</strong> {empresaData.telefone}</p>
           </div>
         )}
       </form>

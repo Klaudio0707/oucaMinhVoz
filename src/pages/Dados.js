@@ -34,6 +34,7 @@ function Dados() {
           <p><strong>Nome do Representante:</strong> {dadosEmpresa.nomeRepresentante}</p>
           <p><strong>Email:</strong> {dadosEmpresa.email}</p>
           <p><strong>CNPJ:</strong> {dadosEmpresa.cnpj}</p>
+          <p><strong>Telefone:</strong> {dadosEmpresa.telefone}</p>
           <p><strong>Nome da Empresa:</strong> {dadosEmpresa.nomeEmpresa}</p>
           <p><strong>Endereço:</strong> {dadosEmpresa.endereco}</p>
 

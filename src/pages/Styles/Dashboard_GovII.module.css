@@ -1,0 +1,129 @@
+.dashboard-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #8e44ad, #3498db);
+  }
+  
+  .dashboard-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #007bff;
+  }
+  
+  .summary-cards {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+    gap: 20px;
+  }
+  
+  .card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    flex: 1;
+    transition: transform 0.2s;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  .card h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .card-value {
+    font-size: 32px;
+    font-weight: bold;
+    color: #007bff;
+  }
+  
+  .charts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 30px;
+  }
+  
+  .chart {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .chart h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+  
+  .table-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table-container h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+  
+  .summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+  }
+  
+  .summary-table th,
+  .summary-table td {
+    padding: 12px 15px;
+    text-align: left;
+  }
+  
+  .summary-table th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .summary-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .summary-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .summary-table td {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .summary-cards {
+      flex-direction: column;
+      gap: 15px;
+    }
+  
+    .charts-container {
+      flex-direction: column;
+    }
+  }
+  

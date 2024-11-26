@@ -2,17 +2,14 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../../src/pages/Components/Footer";
 import logo from "../img/logo-ouca-minhA.png";
-import styles from "./Styles/Register.module.css"; // Atualizado para CSS Module
+import styles from "./Styles/Register.module.css";
 
 function Register() {
   const [nomeRepresentante, setNomeRepresentante] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [telefone] = useState("");
   const [cnpj, setCnpj] = useState("");
-  const [empresaData, setEmpresaData] = useState(null); 
-  // Dados retornados da consulta 
- 
+  const [empresaData, setEmpresaData] = useState(null);
   const [criterios, setCriterios] = useState({
     criterio1: false,
     criterio2: false,
@@ -20,7 +17,7 @@ function Register() {
     criterio4: false,
     criterio5: false,
   });
-  
+
   const [error, setError] = useState(""); // Para exibir mensagens de erro
   const [loading, setLoading] = useState(false); // Estado de carregamento para o botão enviar
 
@@ -67,10 +64,10 @@ function Register() {
         nomeRepresentante,
         email,
         senha,
-        telefone,
+        telefone:data.ddd_telefone_1, // Prioriza o telefone do formulário
         cnpj,
         nomeEmpresa: data.razao_social,
-        endereco: `${data.logradouro}, ${data.numero}, ${data.municipio}, ${data.numero}, - ${data.uf}`,
+        endereco: `${data.logradouro}, ${data.numero}, ${data.municipio}, - ${data.uf}`,
         criterios,
       };
 
@@ -83,7 +80,6 @@ function Register() {
 
       if (userResponse.ok) {
         localStorage.setItem("token", "token-simulado");
-        
         navigate("/dashboard");
       } else {
         setError("Erro ao cadastrar. Tente novamente.");
@@ -96,128 +92,102 @@ function Register() {
   };
 
   return (
-<div>
-<div className={styles["logo-container"]}>
+    <div>
+      <div className={styles["logo-container"]}>
+        <img src={logo} alt="logo empresa" className={styles["logo-img"]} />
+      </div>
 
-<img src={logo} alt="logo empresa"className={styles["logo-img"]}/>
-</div>
+      <div className={styles["register_container"]}>
+        <form className={styles["register-form"]} onSubmit={handleSubmit}>
+          <h2>Cadastro</h2>
 
-<div className={styles["register_container"]}>
-      <form className={styles["register-form"]} onSubmit={handleSubmit}>
-        <h2>Cadastro</h2>
-
-        {/* Campos do formulário */}
-        <input
-          type="text"
-          value={nomeRepresentante}
-          onChange={(e) => setNomeRepresentante(e.target.value)}
-          placeholder="Nome do Representante"
-          required
+          {/* Campos do formulário */}
+          <input
+            type="text"
+            value={nomeRepresentante}
+            onChange={(e) => setNomeRepresentante(e.target.value)}
+            placeholder="Nome do Representante"
+            required
           />
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-          required
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            required
           />
-        <input
-          type="password"
-          value={senha}
-          onChange={(e) => setSenha(e.target.value)}
-          placeholder="Senha"
-          required
+          <input
+            type="password"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+            placeholder="Senha"
+            required
           />
-        <input
-          type="text"
-          value={cnpj}
-          onChange={(e) => setCnpj(e.target.value)}
-          placeholder="CNPJ (somente números)"
-          required
+          <input
+            type="text"
+            value={cnpj}
+            onChange={(e) => setCnpj(e.target.value)}
+            placeholder="CNPJ (somente números)"
+            required
           />
 
-        {/* Critérios de Participação */}
-<h3 className={styles["title-criterios"]}>Critérios de Participação</h3>
-<div className={styles["criterios-section"]}>
-  <div>
-    <input
-      type="checkbox"
-      name="criterio1"
-      checked={criterios.criterio1}
-      onChange={handleCheckboxChange}
-    />
-    <label>
-      Ser pública, privada ou de economia mista, com 100 ou mais empregadas/os, com personalidade jurídica própria.
-    </label>
-  </div>
-  <div>
-    <input
-      type="checkbox"
-      name="criterio2"
-      checked={criterios.criterio2}
-      onChange={handleCheckboxChange}
-    />
-    <label>
-      Estar em dia com as obrigações trabalhistas.
-    </label>
-  </div>
-  <div>
-    <input
-      type="checkbox"
-      name="criterio3"
-      checked={criterios.criterio3}
-      onChange={handleCheckboxChange}
-    />
-    <label>
-      Não ter sofrido denúncias de trabalho escravo.
-    </label>
-  </div>
-  <div>
-    <input
-      type="checkbox"
-      name="criterio4"
-      checked={criterios.criterio4}
-      onChange={handleCheckboxChange}
-    />
-    <label>
-      Não ter denúncias não apuradas de assédio e/ou discriminação.
-    </label>
-  </div>
-  <div>
-    <input
-      type="checkbox"
-      name="criterio5"
-      checked={criterios.criterio5}
-      onChange={handleCheckboxChange}
-    />
-    <label>
-      Publicar relatórios de transparência salarial conforme a Lei n. 14.611/2023.
-    </label>
-  </div>
-</div>
-
-        {/* Exibir mensagem de erro, se houver */}
-        {error && <p className={styles["error-message"]}>{error}</p>}
-
-        {/* Botão de envio */}
-        <button type="submit" disabled={loading}>
-          {loading ? "Processando..." : "Enviar"}
-        </button>
-
-        {/* Exibir dados da empresa (se encontrados) */}
-        {empresaData && (
-          <div className={styles["empresa-data"]}>
-            <h3>Dados da Empresa</h3>
-            <p><strong>Razão Social:</strong> {empresaData.razao_social}</p>
-            <p><strong>Endereço:</strong> {empresaData.logradouro}, {empresaData.numero}, {empresaData.municipio} - {empresaData.uf}</p>
-            <p><strong>CNPJ:</strong> {empresaData.cnpj}</p>
-            <p><strong>Telefone:</strong> {empresaData.telefone}</p>
+          {/* Critérios de Participação */}
+          <h3 className={styles["title-criterios"]}>Critérios de Participação</h3>
+          <div className={styles["criterios-section"]}>
+            {/* Lista de critérios */}
+            {Object.keys(criterios).map((criterio, index) => (
+              <div key={index}>
+                <input
+                  type="checkbox"
+                  name={criterio}
+                  checked={criterios[criterio]}
+                  onChange={handleCheckboxChange}
+                />
+                <label>
+                  {/* Texto de cada critério */}
+                  {criterio === "criterio1" &&
+                    "Ser pública, privada ou de economia mista, com 100 ou mais empregadas/os, com personalidade jurídica própria."}
+                  {criterio === "criterio2" && "Estar em dia com as obrigações trabalhistas."}
+                  {criterio === "criterio3" && "Não ter sofrido denúncias de trabalho escravo."}
+                  {criterio === "criterio4" && "Não ter denúncias não apuradas de assédio e/ou discriminação."}
+                  {criterio === "criterio5" &&
+                    "Publicar relatórios de transparência salarial conforme a Lei n. 14.611/2023."}
+                </label>
+              </div>
+            ))}
           </div>
-        )}
-      </form>
+
+          {/* Exibir mensagem de erro, se houver */}
+          {error && <p className={styles["error-message"]}>{error}</p>}
+
+          {/* Botão de envio */}
+          <button type="submit" disabled={loading}>
+            {loading ? "Processando..." : "Enviar"}
+          </button>
+
+          {/* Exibir dados da empresa (se encontrados) */}
+          {empresaData && (
+            <div className={styles["empresa-data"]}>
+              <h3>Dados da Empresa</h3>
+              <p>
+                <strong>Razão Social:</strong> {empresaData.razao_social}
+              </p>
+              <p>
+                <strong>Endereço:</strong> {empresaData.logradouro}, {empresaData.numero},{" "}
+                {empresaData.municipio} - {empresaData.uf}
+              </p>
+              <p>
+                <strong>CNPJ:</strong> {empresaData.cnpj}
+              </p>
+              <p>
+                <strong>Telefone:</strong> {empresaData.ddd_telefone_1}
+              </p>
+            </div>
+          )}
+        </form>
+      </div>
+      <Footer />
     </div>
-    <Footer />
-        </div>
   );
 }
 

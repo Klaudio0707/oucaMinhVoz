@@ -16,8 +16,6 @@
         "criterio4": false,
         "criterio5": true
       }
-      
-
     },
     {
       "id": "1",
@@ -36,50 +34,11 @@
         "criterio4": false,
         "criterio5": true
       }
-    },
-    {
-      "id": "2",
-      "nomeRepresentante": "João Silva",
-      "email": "joao@exemplo.com",
-      "senha": "123456",
-      "telefone": "81982290481",
-      "cnpj": "98765432000100",
-      "tipo": "empresa",
-      "nomeEmpresa": "Exemplo Ltda",
-      "endereco": "Av. Exemplo, 456 - Rio de Janeiro, RJ",
-      "criterios": {
-        "criterio1": true,
-        "criterio2": true,
-        "criterio3": false,
-        "criterio4": true,
-        "criterio5": true
-      }
-    },
-    {
-      "id": "3",
-      "nomeRepresentante": "Maria Oliveira",
-      "email": "maria@empresa.com",
-      "senha": "senha123",
-      "telefone": "81982290481",
-      "cnpj": "12398765000100",
-      "tipo": "empresa",
-      "nomeEmpresa": "Empresa Modelo",
-      "endereco": "Praça Central, 789 - Belo Horizonte, MG",
-      "criterios": {
-        "criterio1": true,
-        "criterio2": true,
-        "criterio3": true,
-        "criterio4": false,
-        "criterio5": false
-      }
     }
-   
-    
-
   ],
   "formularios": [
     {
-      "id": 1,
+      "empresaId": "1",
       "organizacao": {
         "nome": "Exemplo Org",
         "endereco": "Rua Exemplo, 123",
@@ -115,59 +74,51 @@
         {
           "descricao": "Não ter sofrido denúncias de trabalho escravo.",
           "atendido": false
-        },
-        {
-          "descricao": "Não ter denúncias não apuradas de assédio e/ou discriminação.",
-          "atendido": false
-        },
-        {
-          "descricao": "As empresas privadas deverão ter publicado relatórios da transparência salarial e remuneratória conforme a Lei n. 14.611/2023.",
-          "atendido": false
         }
       ]
     },
     {
-      "id": "7cce",
-      "historico": "asdas",
-      "justificativa": "sadasd",
-      "objetivoGeral": "asdasd",
-      "parcerias": "adas",
+      "id": "9e7e",
+      "historico": "asdasd",
+      "justificativa": "asdasd",
+      "objetivoGeral": "asdas",
+      "parcerias": "asdasdfasdas",
       "outrasInformacoes": "asdasd",
       "eixoGestaoPessoas": {
         "recrutamentoSelecao": {
-          "acao": "asdasd",
-          "objetivos": "asdasd",
-          "indicadores": "asdas",
-          "metas": "dasd",
-          "periodo": "asdasdasd"
+          "acao": "ASDsa",
+          "objetivos": "ASD",
+          "indicadores": "sadaS",
+          "metas": "Dasd",
+          "periodo": "aSD"
         },
         "capacitacaoTreinamento": {
-          "acao": "asdasdas",
-          "objetivos": "asdasd",
-          "indicadores": "asd",
-          "metas": "asdas",
-          "periodo": "asdas"
+          "acao": "adsA",
+          "objetivos": "Dasd",
+          "indicadores": "AD",
+          "metas": "asdA",
+          "periodo": "SDasfasfsa"
         },
         "ascensaoFuncional": {
-          "acao": "dasd",
-          "objetivos": "asdasd",
-          "indicadores": "asdasd",
-          "metas": "sadas",
-          "periodo": "dasdasd"
+          "acao": "fasasdd",
+          "objetivos": "ASDASd",
+          "indicadores": "fA",
+          "metas": "dASD",
+          "periodo": "SDAS"
         },
         "politicasBeneficios": {
-          "acao": "as",
-          "objetivos": "asdasd",
-          "indicadores": "adasdasd",
-          "metas": "asdasd",
-          "periodo": "asdasd"
+          "acao": "asdaS",
+          "objetivos": "ASfaSF",
+          "indicadores": "DAsd",
+          "metas": "ASF",
+          "periodo": "Gasd"
         },
         "saudeSeguranca": {
-          "acao": "asdasd",
-          "objetivos": "asdasd",
-          "indicadores": "asdsad",
-          "metas": "asdas",
-          "periodo": "asdas"
+          "acao": "ASDasd",
+          "objetivos": "ASWF",
+          "indicadores": "asd",
+          "metas": "aSD",
+          "periodo": "afasd"
         }
       },
       "eixoCulturaOrganizacional": {
@@ -211,47 +162,47 @@
       }
     },
     {
-      "id": "b3c9",
-      "historico": "asdasdas",
+      "id": "0b41",
+      "historico": "asdasd",
       "justificativa": "asdasd",
-      "objetivoGeral": "asdasd",
-      "parcerias": "asdasd",
+      "objetivoGeral": "asdas",
+      "parcerias": "asdasdfasdas",
       "outrasInformacoes": "asdasd",
       "eixoGestaoPessoas": {
         "recrutamentoSelecao": {
-          "acao": "asdas",
-          "objetivos": "asdasd",
-          "indicadores": "asd",
-          "metas": "",
-          "periodo": ""
+          "acao": "ASDsa",
+          "objetivos": "ASD",
+          "indicadores": "sadaS",
+          "metas": "Dasd",
+          "periodo": "aSD"
         },
         "capacitacaoTreinamento": {
-          "acao": "",
-          "objetivos": "",
-          "indicadores": "",
-          "metas": "",
-          "periodo": ""
+          "acao": "adsA",
+          "objetivos": "Dasd",
+          "indicadores": "AD",
+          "metas": "asdA",
+          "periodo": "SDasfasfsa"
         },
         "ascensaoFuncional": {
-          "acao": "",
-          "objetivos": "",
-          "indicadores": "",
-          "metas": "",
-          "periodo": ""
+          "acao": "fasasdd",
+          "objetivos": "ASDASd",
+          "indicadores": "fA",
+          "metas": "dASD",
+          "periodo": "SDAS"
         },
         "politicasBeneficios": {
-          "acao": "",
-          "objetivos": "",
-          "indicadores": "",
-          "metas": "",
-          "periodo": ""
+          "acao": "asdaS",
+          "objetivos": "ASfaSF",
+          "indicadores": "DAsd",
+          "metas": "ASF",
+          "periodo": "Gasd"
         },
         "saudeSeguranca": {
-          "acao": "",
-          "objetivos": "",
-          "indicadores": "",
-          "metas": "",
-          "periodo": ""
+          "acao": "ASDasd",
+          "objetivos": "ASWF",
+          "indicadores": "asd",
+          "metas": "aSD",
+          "periodo": "afasd"
         }
       },
       "eixoCulturaOrganizacional": {
@@ -293,6 +244,30 @@
           "periodo": ""
         }
       }
+    }
+  ],
+  "servicos": [
+    {
+      "id": "1",
+      "name": "Relatório Anual de Equidade",
+      "description": "Relatório padrão para análise anual."
+    },
+    {
+      "id": "2",
+      "name": "Formulário de Denúncias",
+      "description": "Ferramenta para receber denúncias anônimas."
+    },
+    {
+      "id": "088f",
+      "name": "Novo DashBOARD",
+      "description": "quero um dashboard que tenha a opçao de filtrar as empresas por regiao"
+    }
+  ],
+  "fichaInscricao": [
+    {
+      "id": "1",
+      "name": "Relatório Anual de Equidade",
+      "description": "Relatório padrão para análise anual."
     }
   ]
 }

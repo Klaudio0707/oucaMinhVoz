@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../pages/Components/Logo";
+import logo from "../img/logo-ouca-minhA.png";
 import Footer from "./Components/Footer";
 import styles from "./Styles/PlanoAcao.module.css";
 
@@ -11,7 +11,10 @@ function PlanoAcao() {
 
   return (
     <div>
-      <Logo/>
+ <div className={styles["logo-container"]}>
+<img src={logo} alt="logo empresa"className={styles["logo-img"]}/>
+
+</div>
     <div className={styles["plano-acao-container"]}>
       <h1 className={styles["title"]}>Plano de Ação – 7ª Edição</h1>
 

@@ -1,100 +1,58 @@
-/* Container principal */
 .dashboard-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start; /* Alinha o conteúdo ao topo */
-  height: 100vh; /* Altura fixa da tela */
-  overflow: hidden; /* Evita rolagem */
-  padding: 10px;
-  box-sizing: border-box;
-  background: linear-gradient(135deg, #8e44ad, #3498db); /* Tons lilás e azul */
+  @apply min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-6 font-sans;
 }
 
-/* Lista de links organizada */
-.link-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Duas colunas fixas */
-  gap: 15px; /* Espaço entre os cards */
-  width: 100%;
-  max-width: 800px; /* Limite da largura */
-  margin-top: 20px;
-  overflow: hidden; /* Evita que conteúdo ultrapasse */
-  padding: 0 10px;
+.user-bar {
+  @apply bg-white shadow-lg rounded-xl p-6 mb-6 flex justify-between items-center 
+         border border-blue-100 transition-all duration-300 hover:shadow-xl;
 }
 
-/* Card pequeno */
-.card {
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  text-decoration: none;
-  color: #333;
-  padding: 10px 15px; /* Menor espaçamento */
-  transition: transform 0.3s, box-shadow 0.3s;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  height: 120px; /* Altura fixa */
+.user-email {
+  @apply text-sm text-gray-600 bg-blue-50 px-4 py-2 rounded-full 
+         hover:bg-blue-100 transition-colors;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-/* Ícone */
-.icon {
-  font-size: 1.8rem; /* Ícones menores */
-  color: #007BFF;
-  margin-bottom: 5px;
-}
-
-/* Barra de progresso */
 .progress-bar-container {
-  width: 100%;
-  max-width: 600px; /* Limita o tamanho */
-  background-color: #868383;
-  border-radius: 10px;
-  overflow: hidden;
-  margin: 10px 0;
-  position: relative;
-  height: 25px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  @apply w-full bg-gray-200 rounded-full h-4 mb-8 overflow-hidden shadow-inner;
 }
 
 .progress-bar {
-  height: 100%;
-  background-color: #4caf50;
-  transition: width 0.5s ease-in-out;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @apply bg-gradient-to-r from-blue-500 to-indigo-600 h-full rounded-full 
+         transition-all duration-500 ease-in-out relative;
 }
 
 .progress-text {
-  color: #ffffff;
-  font-weight: bold;
-  font-size: 12px;
-  position: absolute;
-  width: 100%;
-  text-align: center;
+  @apply absolute right-0 top-1/2 transform -translate-y-1/2 
+         text-white text-xs px-3 bg-blue-600 rounded-l-full;
 }
 
-/* Responsividade para telas menores */
-@media (max-width: 768px) {
-  .link-list {
-    grid-template-columns: 1fr; /* Uma coluna para telas menores */
-  }
+.link-list {
+  @apply grid grid-cols-2 gap-6 md:grid-cols-3;
+}
 
-  .card {
-    height: 55%; /* Ajusta altura para caber na tela */
-    font-size: 0.7rem; /* Texto menor */
-  }
+.card {
+  @apply bg-white rounded-2xl shadow-md p-6 flex flex-col items-center justify-center 
+         text-center space-y-4 transform transition-all duration-300 
+         hover:scale-105 hover:shadow-xl hover:border-blue-300 
+         border border-transparent focus:outline-none focus:ring-2 
+         focus:ring-blue-500 focus:ring-opacity-50;
+}
 
-  .icon {
-    font-size: 1.5rem; /* Ícones menores */
-  }
+.card .icon {
+  @apply text-4xl text-blue-600 mb-4 transition-colors duration-300 
+         group-hover:text-blue-800;
+}
+
+.card span {
+  @apply text-sm text-gray-700 font-semibold;
+}
+
+/* Animações */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.card:hover {
+  animation: pulse 1s infinite;
 }

@@ -4,22 +4,28 @@
   padding: 20px;
   font-family: Arial, sans-serif;
   background: linear-gradient(135deg, #8e44ad, #3498db);
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .title {
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .subtitle {
   font-size: 1rem;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .contact-info {
   font-size: 0.9rem;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .ficha-form {
@@ -32,13 +38,15 @@
   border: 1px solid #ddd;
   padding: 20px;
   border-radius: 8px;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
+  color: #333;
 }
 
 .section-title {
   font-size: 1.3rem;
   font-weight: bold;
   margin-bottom: 15px;
+  color: #2c3e50;
 }
 
 label {
@@ -54,6 +62,13 @@ label {
   font-size: 1rem;
   border: 1px solid #ddd;
   border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+.input-field:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
 }
 
 .small {
@@ -75,6 +90,10 @@ label {
   margin-right: 15px;
 }
 
+.radio-group input {
+  margin-right: 5px;
+}
+
 .submit-button {
   width: 100%;
   padding: 15px;
@@ -85,11 +104,31 @@ label {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .submit-button:hover {
   background-color: #45a049;
+  transform: scale(1.02);
+}
+
+.submit-button:active {
+  transform: scale(0.98);
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+textarea:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
 }
 
 /* Responsividade */
@@ -106,7 +145,7 @@ label {
     padding: 15px;
   }
 
-  .input-field {
+  .input-field, textarea {
     font-size: 0.9rem;
   }
 
@@ -128,7 +167,7 @@ label {
     padding: 10px;
   }
 
-  .input-field {
+  .input-field, textarea {
     font-size: 0.9rem;
   }
 
@@ -162,7 +201,7 @@ label {
     font-size: 0.8rem;
   }
 
-  .input-field {
+  .input-field, textarea {
     font-size: 0.85rem;
   }
 
@@ -171,3 +210,5 @@ label {
     padding: 12px;
   }
 }
+
+

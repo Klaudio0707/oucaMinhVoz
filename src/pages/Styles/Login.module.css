@@ -1,24 +1,29 @@
 /* Fundo geral da página */
 .login-container {
-  overflow: hidden;
+  display: flex;
+  flex-direction: column; /* Coloca os elementos (logo e formulário) em ordem vertical */
+  justify-content: center; /* Centraliza verticalmente */
+  align-items: center; /* Centraliza horizontalmente */
+  min-height: 100vh; /* Ocupa a altura total da tela */
+  margin: 0;
+  background: linear-gradient(135deg, #8e44ad, #3498db); /* Tons lilás e azul */
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+}
+
+/* Alinhamento do logo */
+.logo-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 90vh;
-margin-top: 0%;
-  background: linear-gradient(135deg, #8e44ad, #3498db); /* Tons lilás e azul */
-  font-family: 'Arial', sans-serif;
-}
-.logo-container {
-  /* Container styles */
-  text-align: center;
-  margin-bottom: 0%;
+  margin-bottom: 20px; /* Espaçamento entre o logo e o formulário */
 }
 
 .logo-img {
-   /* Logo image styles */
-   width: 25%;
-   height: auto;
+  width: 20%; /* Ajusta o tamanho do logo */
+  max-width: 200px; /* Define um limite máximo */
+  height: auto;
+  margin-bottom: 20px; /* Espaço entre o logo e o próximo elemento */
 }
 
 /* Formulário de login */
@@ -27,8 +32,8 @@ margin-top: 0%;
   padding: 40px 30px;
   border-radius: 20px;
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
-  width: 50%;
-  max-width: 400x;
+  width: 100%;
+  max-width: 400px; /* Limita a largura máxima */
   text-align: center;
 }
 
@@ -74,13 +79,15 @@ margin-top: 0%;
   border-color: #3498db; /* Azul para foco */
   box-shadow: 0px 0px 5px rgba(52, 152, 219, 0.5);
 }
+
+/* Botão de envio */
 .btn-submit {
   width: 100%;
   padding: 12px 15px;
   background: linear-gradient(135deg, #8e44ad, #3498db); /* Degradê lilás e azul */
   color: #fff;
   border: none;
-  border-radius: 30px; /* Botão com bordas mais arredondadas */
+  border-radius: 30px;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
@@ -88,16 +95,15 @@ margin-top: 0%;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra inicial */
 }
 
-/* Botão de envio */
 .btn-submit:hover {
-  background: linear-gradient(135deg, #9b59b6, #2980b9); /* Alteração suave no degradê */
-  transform: translateY(-4px); /* Efeito de elevação */
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Sombra mais intensa */
+  background: linear-gradient(135deg, #9b59b6, #2980b9);
+  transform: translateY(-4px);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .btn-submit:active {
-  transform: translateY(2px); /* Pressão no botão */
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra reduzida */
+  transform: translateY(2px);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .btn-submit:disabled {
@@ -106,7 +112,7 @@ margin-top: 0%;
   box-shadow: none;
 }
 
-/* Botão de cadastro com melhorias */
+/* Botão de cadastro */
 .btn-register {
   display: inline-block;
   margin-top: 15px;
@@ -115,24 +121,22 @@ margin-top: 0%;
   font-weight: bold;
   color: #3498db;
   background-color: transparent;
-  border: 2px solid #3498db; /* Borda azul */
-  border-radius: 30px; /* Botão com bordas arredondadas */
+  border: 2px solid #3498db;
+  border-radius: 30px;
   text-decoration: none;
   transition: all 0.3s ease-in-out;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra inicial */
 }
 
 .btn-register:hover {
   color: #fff;
-  background-color: #3498db; /* Fundo azul ao passar o mouse */
-  transform: translateY(-4px); /* Efeito de elevação */
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Sombra mais intensa */
+  background-color: #3498db;
+  transform: translateY(-4px);
 }
 
 .btn-register:active {
-  transform: translateY(2px); /* Pressão no botão */
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra reduzida */
+  transform: translateY(2px);
 }
+
 /* Responsividade */
 @media (max-width: 768px) {
   .login-container {
@@ -161,6 +165,10 @@ margin-top: 0%;
 }
 
 @media (max-width: 480px) {
+  .logo-img {
+    width: 30%;
+  }
+
   .login-form {
     padding: 20px 15px;
   }
@@ -181,7 +189,5 @@ margin-top: 0%;
 
   .btn-register {
     font-size: 0.7rem;
-   
   }
 }
-

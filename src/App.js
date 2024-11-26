@@ -13,6 +13,7 @@ import DashboardGovernoII from './pages/DashboardGovernoII';
 import PlanoAcao from './pages/PlanoAcao';
 import Dados from './pages/Dados';
 import GlobalButtons from './pages/Components/GlobalButtons';
+import Suport from "./pages/Suport";
 import './App.css';
 
 function ProtectedRoute({ children }) {
@@ -105,6 +106,15 @@ function App() {
           element={
             <ProtectedRoute>
               <DashboardGovernoII />
+              <GlobalButtons />
+            </ProtectedRoute>
+          }
+          />
+            <Route
+          path="/Suport"
+          element={
+            <ProtectedRoute>
+              <Suport />
               <GlobalButtons />
             </ProtectedRoute>
           }

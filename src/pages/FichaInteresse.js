@@ -4,7 +4,6 @@ import Logo from "../pages/Components/Logo";
 import Footer from "./Components/Footer";
 import api from "../apiFake/api"; // Importando a API fornecida
 
-
 function FichaInteresse() {
   const [userData, setUserData] = useState(null); // Estado para armazenar os dados do usuário
   const [loading, setLoading] = useState(true); // Estado para controle de carregamento
@@ -36,83 +35,82 @@ function FichaInteresse() {
 
   return (
     <div>
-<Logo />
-    <div className={style["ficha-interesse-container"]}>
-      <h1 className="title">
-        Ficha de Interesse em Participar do Programa Pró-Equidade de Gênero e Raça - 7ª Edição
-      </h1>
-      <p className="subtitle">www.gov.br/mulheres/proequidade</p>
-      <p className="contact-info">
-        E-mail: programaproequidade@mulheres.gov.br | Tel: (61) 2027-3083
-      </p>
+      <Logo />
+      <div className={style["ficha-interesse-container"]}>
+        <h1 className={style["title"]}>
+          Ficha de Interesse em Participar do Programa Pró-Equidade de Gênero e Raça - 7ª Edição
+        </h1>
+        <p className={style["subtitle"]}>www.gov.br/mulheres/proequidade</p>
+        <p className={style["contact-info"]}>
+          E-mail: programaproequidade@mulheres.gov.br | Tel: (61) 2027-3083
+        </p>
 
-      <form className="ficha-form">
-        <section className="section">
-          <h2 className="section-title">DADOS DA ORGANIZAÇÃO</h2>
-          <p>
-            <strong>Nome da Organização:</strong> {userData?.nomeEmpresa || "Não informado"}
-          </p>
-          <p>
-            <strong>Endereço:</strong> {userData?.endereco || "Não informado"}
-          </p>
-          <p>
-            <strong>Cidade:</strong> {userData?.cidade || "Não informado"} |{" "}
-            <strong>UF:</strong> {userData?.uf || "Não informado"} |{" "}
-            <strong>CEP:</strong> {userData?.cep || "Não informado"}
-          </p>
-          <p>
-            <strong>E-mail:</strong> {userData?.email || "Não informado"}
-          </p>
-          <p>
-            <strong>Natureza da organização:</strong> {userData?.natureza || "Não informado"}
-          </p>
-        </section>
+        <form className={style["ficha-form"]}>
+          <section className={style["section"]}>
+            <h2 className={style["section-title"]}>DADOS DA ORGANIZAÇÃO</h2>
+            <p>
+              <strong>Nome da Organização:</strong> {userData?.nomeEmpresa || "Não informado"}
+            </p>
+            <p>
+              <strong>Endereço:</strong> {userData?.endereco || "Não informado"}
+            </p>
+            <p>
+              <strong>Cidade:</strong> {userData?.cidade || "Não informado"} |{" "}
+              <strong>UF:</strong> {userData?.uf || "Não informado"} |{" "}
+              <strong>CEP:</strong> {userData?.cep || "Não informado"}
+            </p>
+            <p>
+              <strong>E-mail:</strong> {userData?.email || "Não informado"}
+            </p>
+            <p>
+              <strong>Natureza da organização:</strong> {userData?.natureza || "Não informado"}
+            </p>
+          </section>
 
-        <section className="section">
-          <h2 className="section-title">DADOS DA/O REPRESENTANTE LEGAL DA ORGANIZAÇÃO</h2>
-          <p>
-            <strong>Nome:</strong> {userData?.nomeRepresentante || "Não informado"}
-          </p>
-          <p>
-            <strong>Cargo:</strong> {userData?.cargo || "Não informado"}
-          </p>
-          <p>
-            <strong>Telefone:</strong> {userData?.telefone || "Não informado"}
-          </p>
-          <p>
-            <strong>E-mail:</strong> {userData?.emailRepresentante || "Não informado"}
-          </p>
-        </section>
+          <section className={style["section"]}>
+            <h2 className={style["section-title"]}>DADOS DA/O REPRESENTANTE LEGAL DA ORGANIZAÇÃO</h2>
+            <p>
+              <strong>Nome:</strong> {userData?.nomeRepresentante || "Não informado"}
+            </p>
+            <p>
+              <strong>Cargo:</strong> {userData?.cargo || "Não informado"}
+            </p>
+            <p>
+              <strong>Telefone:</strong> {userData?.telefone || "Não informado"}
+            </p>
+            <p>
+              <strong>E-mail:</strong> {userData?.emailRepresentante || "Não informado"}
+            </p>
+          </section>
 
-        <section className="section">
-          <h2 className="section-title">DADOS DO CONTATO NA ORGANIZAÇÃO</h2>
-          <label>
-            Nome:
-            <input type="text" className="input-field" />
-          </label>
-          <label>
-            Cargo:
-            <input type="text" className="input-field" />
-          </label>
-          <label>
-            Telefone:
-            <input type="tel" className="input-field" />
-          </label>
-          <label>
-            E-mail:
-            <input type="email" className="input-field" />
-          </label>
-        </section>
+          <section className={style["section"]}>
+            <h2 className={style["section-title"]}>DADOS DO CONTATO NA ORGANIZAÇÃO</h2>
+            <label>
+              Nome:
+              <input type="text" className={style["input-field"]} />
+            </label>
+            <label>
+              Cargo:
+              <input type="text" className={style["input-field"]} />
+            </label>
+            <label>
+              Telefone:
+              <input type="tel" className={style["input-field"]} />
+            </label>
+            <label>
+              E-mail:
+              <input type="email" className={style["input-field"]} />
+            </label>
+          </section>
 
-        <button type="submit" className="submit-button">
-          Enviar
-        </button>
-      </form>
-    </div>
-   <Footer />
+          <button type="submit" className={style["submit-button"]}>
+            Tenho Interesse
+          </button>
+        </form>
+      </div>
+      <Footer />
     </div>
   );
 }
 
 export default FichaInteresse;
-

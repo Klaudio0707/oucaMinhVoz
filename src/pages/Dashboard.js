@@ -1,20 +1,30 @@
+
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaPaperPlane, FaFileAlt,  FaClipboardList, FaUserPlus, FaClipboardCheck, FaChartLine } from 'react-icons/fa';
+import {
+  
+  FaFileAlt,
+  FaClipboardList,
+  FaUserPlus,
+  FaClipboardCheck,
+  FaChartLine,
+} from 'react-icons/fa';
 import style from './Styles/dashBoard.module.css';
-import Footer from "./Components/Footer.js";
+import Logout from "./Components/LogoutButton.js";
+import Footer from './Components/Footer.js';
 import api from '../apiFake/api.js';
 
 function Dashboard() {
   const [progress, setProgress] = useState({ totalSteps: 5, completedSteps: 0 });
   const [userData, setUserData] = useState({ nome: '', email: '' });
   const [loading, setLoading] = useState(false);
-  const [formsSubmitted, setFormsSubmitted] = useState(0); // Novo estado para formulários enviados
+  const [formsSubmitted, setFormsSubmitted] = useState(0);
 
   useEffect(() => {
     async function fetchUserData() {
       try {
-        const user = await api.users.get(); // Simula a busca de dados do usuário
+        const user = await api.users.get();
         setUserData(user);
       } catch (error) {
         console.error('Erro ao buscar dados do usuário:', error);
@@ -24,16 +34,14 @@ function Dashboard() {
   }, []);
 
   const handleFormSubmit = () => {
-    // Simula o envio de um formulário
     setLoading(true);
     setTimeout(() => {
-      setFormsSubmitted((prev) => prev + 1); // Atualiza a contagem de formulários enviados
+      setFormsSubmitted((prev) => prev + 1);
       setLoading(false);
-    }, 1000); // Simula um atraso no envio
+    }, 1000);
   };
 
   useEffect(() => {
-    // Atualiza o progresso toda vez que a contagem de formulários enviados mudar
     setProgress((prev) => ({
       ...prev,
       completedSteps: formsSubmitted,
@@ -43,69 +51,71 @@ function Dashboard() {
   const progressPercentage = (progress.completedSteps / progress.totalSteps) * 100;
 
   const links = [
-    { to: "/Form-Envio", label: "Enviar Documento", icon: <FaPaperPlane />, action: handleFormSubmit },
-    { to: "/Status", label: "Ver Status dos Documentos", icon: <FaFileAlt /> },
-  
-   
-    { to: "/InscricaoPrograma", label: "Inscrição", icon: <FaClipboardList /> },
-    { to: "/Dados", label: "Dados", icon: <FaUserPlus /> },
-    { to: "/FichaInteresse", label: "Ficha de Interesse", icon: <FaClipboardCheck /> },
-    { to: "/PlanoAcao", label: "Plano de Ação", icon: <FaChartLine /> },
+
+    { to: '/Status', label: 'Ver Status', icon: <FaFileAlt /> },
+    { to: '/Cronograma', label: 'Cronograma', icon: <FaClipboardList />, action: handleFormSubmit  },
+    { to: '/Dados', label: 'Dados', icon: <FaUserPlus /> },
+    { to: '/FichaInteresse', label: 'Ficha de Interesse', icon: <FaClipboardCheck /> },
+    { to: '/InscricaoPrograma', label: 'Inscrição', icon: <FaClipboardList />, action: handleFormSubmit  },
+    { to: '/PlanoAcao', label: 'Plano de Ação', icon: <FaChartLine /> },
   ];
 
   return (
     <div>
-
-    <div className={style["dashboard-container"]}>
-      {/* Barra superior com informações do usuário */}
-      <div className={style["user-bar"]}>
-        <div>
-          <strong>Bem-vindo, {userData.nomeRepresentante || "Usuário"}!</strong>
-          <br />
-          <span>
-            <strong>Empresa:</strong>{" "}
-            {userData.nomeEmpresa?.split(" ").slice(0, 2).join(" ") || "Empresa"}
-          </span>
-        </div>
-        <div className={style["user-email"]}>{userData.email || "Email não informado"}</div>
-        <strong>CNPJ: {userData.cnpj?.split(" ").slice(0, 3).join(".") || "cnpj"}</strong>
-      </div>
-
-      {/* Barra de progresso centralizada */}
-      <div className={style["progress-bar-container"]}>
-        <div
-          className={style["progress-bar"]}
-          style={{ width: `${progressPercentage}%` }}
-        >
-          <span className={style["progress-text"]}>
-            {`Cadastro em andamento: ${progressPercentage.toFixed(0)}%`}
-          </span>
-        </div>
-      </div>
-
-      {/* Links em forma de cards */}
-      <div className={style["link-list"]}>
-        {links.map((link, index) => (
-          <Link
-          key={index}
-          to={link.to}
-          className={style["card"]}
-          onClick={link.action || null}
-          >
-            <div className={style["icon"]}>{link.icon}</div>
+     <div className={`${style['dashboard-container']} max-w-6xl mx-auto`}>
+        {/* Barra superior com destaque */}
+        <div className={style['user-bar']}>
+          <div>
+            <strong>Bem-vindo, {userData.nomeRepresentante || 'Usuário'}!</strong>
+            <br />
             <span>
-              {loading && link.to === "/Form-Envio" ? "Enviando..." : link.label}
+              <strong>Empresa:</strong>{' '}
+              {userData.nomeEmpresa?.split(' ').slice(0, 2).join(' ') || 'Empresa'}
             </span>
-          </Link>
-        ))}
+            <br />
+            <strong>CNPJ: {userData.cnpj || 'CNPJ não informado'}</strong>
+          </div>
+          <div className={style['user-email']}>{userData.email || 'Email não informado'}</div>
+        </div>
+
+        {/* Barra de progresso */}
+        <div className={style['progress-bar-container']}>
+          <div
+            className={style['progress-bar']}
+            style={{ width: `${progressPercentage}%` }}
+          >
+            <span className={style['progress-text']}>
+              {`Cadastro em andamento: ${progressPercentage.toFixed(0)}%`}
+            </span>
+          </div>
+        </div>
+
+        {/* Links em forma de cards */}
+        <div className={style['link-list']}>
+          {links.map((link, index) => (
+            <Link
+              key={index}
+              to={link.to}
+              className={style['card']}
+              onClick={link.action || null}
+            >
+              <div className={style['icon']}>{link.icon}</div>
+              <span>
+                {loading && link.to === '/IncricaoPrograma' ? 'Enviando...' : link.label}
+              </span>
+            </Link>
+          ))}
+        </div>
+
       </div>
+      <Logout />
+      <Footer />
     </div>
-      <Footer/>
-</div>
   );
 }
 
 export default Dashboard;
+
 
 
 

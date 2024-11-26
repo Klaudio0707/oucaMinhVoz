@@ -49,8 +49,8 @@ function Login() {
     <div>
 
     <div className={style["logo-container"]}>
-
 <img src={logo} alt="logo empresa"className={style["logo-img"]}/>
+
 </div>
     <div className={style['login-container']}>
       <form className={style['login-form']} onSubmit={handleSubmit}>

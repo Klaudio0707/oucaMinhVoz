@@ -1,108 +1,169 @@
-/* Styles/FormStyles.css */
+.equidade-form {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px; /* Espaçamento entre o logo e o formulário */
+}
 
-/* Configuração geral */
-body {
-    font-family: 'Arial', sans-serif;
+.logo-img {
+  width: 20%; /* Ajusta o tamanho do logo */
+  max-width: 200px; /* Define um limite máximo */
+  height: auto;
+  margin-bottom: 20px; /* Espaço entre o logo e o próximo elemento */
+}
 
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(to bottom right, #7f00ff, #e100ff);
-  }
-  
+.form-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.form-section {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.section-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #2c3e50;
+}
+
+.input-textarea,
+.input-field {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+.input-textarea {
+  resize: vertical;
+  height: 80px;
+}
+
+.input-field:focus,
+.input-textarea:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+.dimension {
+  margin-bottom: 20px;
+}
+
+.dimension-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #2c3e50;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-bottom: 100px;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
+  transform: scale(1.02);
+}
+
+.submit-button:active {
+  transform: scale(0.98);
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
   .equidade-form {
-    max-width: 60%;
-    margin: 40px auto;
-    padding: 20px;
-    margin-top: 15%;
-    background-color: #ffffff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    box-sizing: border-box;
-    margin-bottom: 20%;
+    padding: 15px;
   }
-  
+
   .form-title {
-    font-size: 24px;
-    text-align: center;
-    margin-bottom: 20px;
-    color: #4a4a4a;
+    font-size: 1.8rem;
   }
-  
+
   .form-section {
-    margin-bottom: 20px;
+    padding: 15px;
   }
-  
-  .section-title {
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: #333333;
-  }
-  
-  .dimension {
-    margin-bottom: 15px;
-  }
-  
-  .dimension-title {
-    font-size: 16px;
-    font-weight: bold;
-    color: #555555;
-    margin-bottom: 5px;
-  }
-  
-  .input-textarea,
-  .input-field {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #dddddd;
-    border-radius: 4px;
-    font-size: 14px;
-    box-sizing: border-box;
-  }
-  
+
+  .input-field,
   .input-textarea {
-    height: 100px;
-    resize: vertical;
+    font-size: 0.9rem;
   }
-  
-  .input-field:focus,
-  .input-textarea:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
-  }
-  
+
   .submit-button {
-    display: block;
-    width: 100%;
-    padding: 12px 0;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 1rem;
   }
-  
-  .submit-button:hover {
-    background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .equidade-form {
+    padding: 10px;
   }
-  
-  /* Responsividade */
-  @media (max-width: 768px) {
-    .form-title {
-      font-size: 20px;
-    }
-  
-    .section-title {
-      font-size: 16px;
-    }
-  
-    .dimension-title {
-      font-size: 14px;
-    }
+
+  .form-title {
+    font-size: 1.6rem;
   }
-  
+
+  .form-section {
+    padding: 10px;
+  }
+
+  .input-field,
+  .input-textarea {
+    font-size: 0.9rem;
+  }
+
+  .submit-button {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .equidade-form {
+    padding: 5px;
+  }
+
+  .form-title {
+    font-size: 1.4rem;
+  }
+
+  .input-field,
+  .input-textarea {
+    font-size: 0.85rem;
+  }
+
+  .submit-button {
+    font-size: 0.9rem;
+    padding: 12px;
+  }
+}

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import {  useNavigate } from "react-router-dom";
-
-import Footer from "../pages/Components/Footer";
 import style from "./Styles/Dashboard_Governo.module.css"; // Certifique-se de ter os estilos necessários
 
 function DashboardGoverno() {
@@ -42,8 +40,11 @@ function DashboardGoverno() {
   }, []);
 
   // Redirecionar para DashboardGovernoII
-  const handleRedirect = () => {
+  const handleRedirectDash = () => {
     navigate("/DashboardGovernoII");
+  };
+  const handleRedirectServ = () => {
+    navigate("/Suport");
   };
 
   return (
@@ -71,12 +72,17 @@ function DashboardGoverno() {
 
         {/* Botão para acessar DashboardGovernoII */}
         <div className={style["link-list"]}>
-          <button className={style["card"]} onClick={handleRedirect}>
+          <button className={style["card"]} onClick={handleRedirectDash}>
             Ir para DashboardGovernoII
           </button>
         </div>
+        <div className={style["link-list"]}>
+          <button className={style["card"]} onClick={handleRedirectServ}>
+            Ir para Serviços e Suporte.
+          </button>
+        </div>
       </div>
-<Footer/>
+
     </div>
   );
 }

@@ -2,6 +2,7 @@
 
 .footerContainer {
     background-color: #f1f1f1; /* Light gray background */
+    margin-top: 30px;
     padding: 20px;
     display: flex; /* Allow horizontal layout for content */
     justify-content: center; /* Center content horizontally */ /* Addressed centering issue */

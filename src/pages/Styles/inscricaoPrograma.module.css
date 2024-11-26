@@ -10,13 +10,15 @@ body {
   }
   
   .equidade-form {
-    max-width: 800px;
+    max-width: 60%;
     margin: 40px auto;
     padding: 20px;
+    margin-top: 15%;
     background-color: #ffffff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     box-sizing: border-box;
+    margin-bottom: 20%;
   }
   
   .form-title {

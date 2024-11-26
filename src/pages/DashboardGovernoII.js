@@ -14,9 +14,9 @@ import {
 } from "recharts";
 
 const rejectionData = [
-  { reason: "Documentação incompleta", percentage: 35 },
-  { reason: "Critérios não atendidos", percentage: 40 },
-  { reason: "Falta de ações efetivas", percentage: 25 },
+  { reason: "Cadastro não Concluido", percentage: 15 },
+  { reason: "Critérios não Atendidos", percentage: 10 },
+  { reason: "Falta de Ações Efetivas", percentage: 5 },
 ];
 
 const adoptionData = [
@@ -48,21 +48,32 @@ function DashboardGovII() {
       <div className={style["charts-container"]}>
         {/* Principais motivos de rejeição */}
         <div className={style["chart"]}>
-          <h2>Principais Motivos de Rejeição</h2>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={rejectionData} layout="vertical" margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis type="number" />
-              <YAxis dataKey="reason" type="category" />
-              <Tooltip />
-              <Bar dataKey="percentage" fill="#ff4d4d" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-
+    <h2>Principais Motivos de Rejeição</h2>
+    <ResponsiveContainer width="100%" height={300}>
+      <BarChart
+        data={rejectionData}
+        layout="vertical"
+        margin={{ top: 10, right: 50, left: 20, bottom: 20 }} // Ajuste as margens para espaçamento
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis type="number" />
+        <YAxis 
+          dataKey="reason" 
+          type="category" 
+          width={150} // Aumenta a largura do eixo Y para comportar textos longos
+        />
+        <Tooltip />
+        <Bar 
+          dataKey="percentage" 
+          fill="#ff4d4d" 
+          barSize={30} // Ajusta a altura das barras
+        />
+      </BarChart>
+    </ResponsiveContainer>
+  </div>
         {/* Evolução no número de adesões */}
         <div className={style["chart"]}>
-          <h2>Evolução no Número de Adesões</h2>
+          <h2>Evolução no Número de Empresas Participantes</h2>
           <ResponsiveContainer width="100%" height={300}>
             <LineChart data={adoptionData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -89,14 +100,14 @@ function DashboardGovII() {
           </thead>
           <tbody>
             <tr>
-              <td>Empresa A</td>
+              <td>Nassau</td>
               <td>Aprovada</td>
               <td>-</td>
             </tr>
             <tr>
-              <td>Empresa B</td>
+              <td>Comida e Companhia LTDA</td>
               <td>Rejeitada</td>
-              <td>Documentação incompleta</td>
+              <td>Faltou enviar o Plano de Ação</td>
             </tr>
             <tr>
               <td>Empresa C</td>

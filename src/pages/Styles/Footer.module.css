@@ -1,0 +1,35 @@
+/* Footer.module.css */
+
+.footerContainer {
+    background-color: #f1f1f1; /* Light gray background */
+    padding: 20px;
+    display: flex; /* Allow horizontal layout for content */
+    justify-content: center; /* Center content horizontally */ /* Addressed centering issue */
+    align-items: center; /* Vertically align content within the footer */
+  }
+  
+  .linkFooter {
+    text-decoration: none; /* Remove underline from link */
+  }
+  
+  .TextFooter {
+    color: #333; /* Dark gray text */
+    font-size: 14px;
+    margin: 0; /* Remove default margin */
+  }
+  
+  .TextFooter strong {
+    font-weight: bold; /* Bold copyright text */
+  }
+  
+  /* Media Queries for Responsiveness */
+  
+  @media (max-width: 768px) {
+    .footerContainer {
+      padding: 10px; /* Adjust padding for smaller screens */
+    }
+  
+    .TextFooter {
+      font-size: 12px; /* Adjust font size for smaller screens */
+    }
+  }

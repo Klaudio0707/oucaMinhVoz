@@ -6,15 +6,27 @@
   align-items: center;
   justify-content: center;
 }
+.logo-container {
+  /* Container styles */
+  text-align: center;
+  margin-bottom: -10%;
+}
+
+.logo-img {
+   /* Logo image styles */
+   width: 20%;
+   height: auto;
+}
 
 .register-form {
-  max-width: 400px;
-  width: 100%;
+  max-width: 30%;
+  width: 50%;
   padding: 30px;
   background-color: #ffffff; /* Fundo branco */
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
   font-family: Arial, sans-serif;
+  
 }
 
 .register-form h2 {
@@ -28,7 +40,7 @@
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
-  border: 1px solid #ddd;
+  border: 1px solid #7d5b5b;
   border-radius: 4px;
   font-size: 16px;
   color: #555555; /* Texto cinza */
@@ -39,29 +51,30 @@
   border-color: #8e44ad; /* Cor de foco lilás */
   outline: none;
 }
-
 .criterios-section {
-  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Espaçamento entre os itens */
 }
 
-.criterios-section h3 {
-  font-size: 18px;
-  color: #444444; /* Subtítulo em tom médio */
-  margin-bottom: 10px;
-}
-
-.criterios-section label {
-  display: inline-flex; /* Flex container em linha */
-  align-items: center; /* Alinhamento vertical */
-  font-size: 14px;
-  color: #666666; /* Texto em tom mais claro */
-  margin-bottom: 8px;
+.criterios-section div {
+  display: flex;
+  align-items: center; /* Alinha checkbox e texto verticalmente */
+  gap: 10px; /* Espaçamento entre o checkbox e o texto */
 }
 
 .criterios-section input[type="checkbox"] {
-  margin: 0 1px auto auto; /* Ajusta o espaço entre a caixa e o texto */
-  accent-color: #8e44ad; /* Cor da marcação */
+  width: 20px;
+  height: 20px; /* Tamanho do checkbox */
+  accent-color: #007bff; /* Cor personalizada para checkbox */
 }
+
+.criterios-section label {
+  font-size: 16px;
+  line-height: 1.5;
+  cursor: pointer; /* Cursor de mão ao passar sobre o texto */
+}
+
 
 
 

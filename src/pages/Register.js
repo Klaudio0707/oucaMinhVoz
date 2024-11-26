@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Footer from "../../src/pages/Components/Footer";
+import logo from "../img/logo-ouca-minhA.png";
 import styles from "./Styles/Register.module.css"; // Atualizado para CSS Module
 
 function Register() {
   const [nomeRepresentante, setNomeRepresentante] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [telefone, setTelefone] = useState("");
+  const [telefone] = useState("");
   const [cnpj, setCnpj] = useState("");
   const [empresaData, setEmpresaData] = useState(null); 
   // Dados retornados da consulta 
@@ -94,7 +96,13 @@ function Register() {
   };
 
   return (
-    <div className={styles["register_container"]}>
+<div>
+<div className={styles["logo-container"]}>
+
+<img src={logo} alt="logo empresa"className={styles["logo-img"]}/>
+</div>
+
+<div className={styles["register_container"]}>
       <form className={styles["register-form"]} onSubmit={handleSubmit}>
         <h2>Cadastro</h2>
 
@@ -105,88 +113,88 @@ function Register() {
           onChange={(e) => setNomeRepresentante(e.target.value)}
           placeholder="Nome do Representante"
           required
-        />
+          />
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
           required
-        />
+          />
         <input
           type="password"
           value={senha}
           onChange={(e) => setSenha(e.target.value)}
           placeholder="Senha"
           required
-        />
+          />
         <input
           type="text"
           value={cnpj}
           onChange={(e) => setCnpj(e.target.value)}
           placeholder="CNPJ (somente números)"
           required
-        />
+          />
 
         {/* Critérios de Participação */}
-        <div className={styles["criterios-section"]}>
-          <h3>Critérios de Participação</h3>
-          <div>
-            <label>
-              <input
-                type="checkbox"
-                name="criterio1"
-                checked={criterios.criterio1}
-                onChange={handleCheckboxChange}
-              />
-              Ser pública, privada ou de economia mista, com 100 ou mais empregadas/os, com personalidade jurídica própria.
-            </label>
-          </div>
-          <div>
-            <label>
-              <input
-                type="checkbox"
-                name="criterio2"
-                checked={criterios.criterio2}
-                onChange={handleCheckboxChange}
-              />
-              Estar em dia com as obrigações trabalhistas.
-            </label>
-          </div>
-          <div>
-            <label>
-              <input
-                type="checkbox"
-                name="criterio3"
-                checked={criterios.criterio3}
-                onChange={handleCheckboxChange}
-              />
-              Não ter sofrido denúncias de trabalho escravo.
-            </label>
-          </div>
-          <div>
-            <label>
-              <input
-                type="checkbox"
-                name="criterio4"
-                checked={criterios.criterio4}
-                onChange={handleCheckboxChange}
-              />
-              Não ter denúncias não apuradas de assédio e/ou discriminação.
-            </label>
-          </div>
-          <div>
-            <label>
-              <input
-                type="checkbox"
-                name="criterio5"
-                checked={criterios.criterio5}
-                onChange={handleCheckboxChange}
-              />
-              Publicar relatórios de transparência salarial conforme a Lei n. 14.611/2023.
-            </label>
-          </div>
-        </div>
+<h3 className={styles["title-criterios"]}>Critérios de Participação</h3>
+<div className={styles["criterios-section"]}>
+  <div>
+    <input
+      type="checkbox"
+      name="criterio1"
+      checked={criterios.criterio1}
+      onChange={handleCheckboxChange}
+    />
+    <label>
+      Ser pública, privada ou de economia mista, com 100 ou mais empregadas/os, com personalidade jurídica própria.
+    </label>
+  </div>
+  <div>
+    <input
+      type="checkbox"
+      name="criterio2"
+      checked={criterios.criterio2}
+      onChange={handleCheckboxChange}
+    />
+    <label>
+      Estar em dia com as obrigações trabalhistas.
+    </label>
+  </div>
+  <div>
+    <input
+      type="checkbox"
+      name="criterio3"
+      checked={criterios.criterio3}
+      onChange={handleCheckboxChange}
+    />
+    <label>
+      Não ter sofrido denúncias de trabalho escravo.
+    </label>
+  </div>
+  <div>
+    <input
+      type="checkbox"
+      name="criterio4"
+      checked={criterios.criterio4}
+      onChange={handleCheckboxChange}
+    />
+    <label>
+      Não ter denúncias não apuradas de assédio e/ou discriminação.
+    </label>
+  </div>
+  <div>
+    <input
+      type="checkbox"
+      name="criterio5"
+      checked={criterios.criterio5}
+      onChange={handleCheckboxChange}
+    />
+    <label>
+      Publicar relatórios de transparência salarial conforme a Lei n. 14.611/2023.
+    </label>
+  </div>
+</div>
 
         {/* Exibir mensagem de erro, se houver */}
         {error && <p className={styles["error-message"]}>{error}</p>}
@@ -208,6 +216,8 @@ function Register() {
         )}
       </form>
     </div>
+    <Footer />
+        </div>
   );
 }
 

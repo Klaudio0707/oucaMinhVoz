@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import api from '../apiFake/api';
 import { useUser } from "./Services/UserContext";// Importa o contexto
+import logo from "../img/logo-ouca-minhA.png";
+import Footer from './Components/Footer';
 import style from './Styles/Login.module.css';
 
 function Login() {
@@ -16,18 +18,24 @@ function Login() {
     e.preventDefault();
     setErro('');
     setLoading(true);
-
+  
     try {
       const { user, token } = await api.auth.login(email, senha);
-
+  
       console.log('Usuário autenticado:', user);
       console.log('Token gerado:', token);
-
+  
       // Armazena o usuário no contexto
       setUser(user);
-
-      // Redireciona para a página de dados
-      navigate('/Dashboard');
+  
+      // Redireciona para o dashboard apropriado com base no tipo de usuário
+      if (user.tipo === 'governo') {
+        navigate('/DashboardGoverno');
+      } else if (user.tipo === 'empresa') {
+        navigate('/dashboard');
+      } else {
+        throw new Error('Tipo de usuário desconhecido.');
+      }
     } catch (error) {
       setErro(error.message || 'Erro ao fazer login. Verifique suas credenciais e tente novamente.');
       console.error('Erro ao autenticar:', error);
@@ -35,8 +43,15 @@ function Login() {
       setLoading(false);
     }
   };
+  
 
   return (
+    <div>
+
+    <div className={style["logo-container"]}>
+
+<img src={logo} alt="logo empresa"className={style["logo-img"]}/>
+</div>
     <div className={style['login-container']}>
       <form className={style['login-form']} onSubmit={handleSubmit}>
         <h2>Login</h2>
@@ -53,7 +68,7 @@ function Login() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Digite seu email"
             required
-          />
+            />
         </div>
 
         <div className={style['form-group']}>
@@ -79,6 +94,8 @@ function Login() {
         </Link>
       </form>
     </div>
+    <Footer />
+            </div>
   );
 }
 

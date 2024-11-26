@@ -1,4 +1,6 @@
 import React from "react";
+import Logo from "../pages/Components/Logo";
+import Footer from "./Components/Footer";
 import styles from "./Styles/PlanoAcao.module.css";
 
 function PlanoAcao() {
@@ -8,6 +10,8 @@ function PlanoAcao() {
   };
 
   return (
+    <div>
+      <Logo/>
     <div className={styles["plano-acao-container"]}>
       <h1 className={styles["title"]}>Plano de Ação – 7ª Edição</h1>
 
@@ -160,7 +164,7 @@ function PlanoAcao() {
             <textarea
               className={styles["textarea-field"]}
               placeholder="Explique os motivos que levam a organização a aderir ao Programa."
-            ></textarea>
+              ></textarea>
           </div>
         </section>
 
@@ -171,7 +175,7 @@ function PlanoAcao() {
             <textarea
               className={styles["textarea-field"]}
               placeholder="Destacar os objetivos com a promoção da igualdade."
-            ></textarea>
+              ></textarea>
           </div>
         </section>
 
@@ -191,6 +195,8 @@ function PlanoAcao() {
         </button>
       </form>
     </div>
+    <Footer/>
+              </div>
   );
 }
 

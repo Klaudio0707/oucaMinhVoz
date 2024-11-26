@@ -1,11 +1,32 @@
 {
   "users": [
     {
+      "id": "1786",
+      "nomeRepresentante": "Administrador",
+      "email": "admin@governo.br",
+      "senha": "123456",
+      "cnpj": "12345678000190",
+      "tipo": "governo",
+      "nomeEmpresa": "Empresa Teste",
+      "endereco": "Rua Teste, 123 - São Paulo, SP",
+      "criterios": {
+        "criterio1": true,
+        "criterio2": false,
+        "criterio3": true,
+        "criterio4": false,
+        "criterio5": true
+      }
+      
+
+    },
+    {
       "id": "1",
       "nomeRepresentante": "Usuário Teste",
       "email": "teste@teste.com",
       "senha": "123456",
+      "telefone": "81982290481",
       "cnpj": "12345678000100",
+      "tipo": "empresa",
       "nomeEmpresa": "Empresa Teste",
       "endereco": "Rua Teste, 123 - São Paulo, SP",
       "criterios": {
@@ -21,7 +42,9 @@
       "nomeRepresentante": "João Silva",
       "email": "joao@exemplo.com",
       "senha": "123456",
+      "telefone": "81982290481",
       "cnpj": "98765432000100",
+      "tipo": "empresa",
       "nomeEmpresa": "Exemplo Ltda",
       "endereco": "Av. Exemplo, 456 - Rio de Janeiro, RJ",
       "criterios": {
@@ -37,7 +60,9 @@
       "nomeRepresentante": "Maria Oliveira",
       "email": "maria@empresa.com",
       "senha": "senha123",
+      "telefone": "81982290481",
       "cnpj": "12398765000100",
+      "tipo": "empresa",
       "nomeEmpresa": "Empresa Modelo",
       "endereco": "Praça Central, 789 - Belo Horizonte, MG",
       "criterios": {
@@ -47,41 +72,10 @@
         "criterio4": false,
         "criterio5": false
       }
-    },
-    {
-      "id": "a910",
-      "nomeRepresentante": "Frederico",
-      "email": "contato@exemplo.com",
-      "senha": "123456",
-      "cnpj": "09257659000100",
-      "telefone": "(11) 98765-4321",
-      "nomeEmpresa": "CONTINENTAL COMERCIO E INDUSTRIA DE INGREDIENTES ALIMENTICIOS LTDA",
-      "endereco": "ARTUR MOURA, RECIFE - PE",
-      "criterios": {
-        "criterio1": true,
-        "criterio2": true,
-        "criterio3": true,
-        "criterio4": true,
-        "criterio5": true
-      }
-    },
-    {
-      "id": "2d36",
-      "nomeRepresentante": "glauco",
-      "email": "contato@empresa.com",
-      "senha": "123456",
-      "telefone": "",
-      "cnpj": "31329180000183",
-      "nomeEmpresa": "MAXXISUPRI COMERCIO DE SANEANTES LTDA",
-      "endereco": "ANTONIO CABRAL DE SOUZA, PAULISTA, 2872, - PE",
-      "criterios": {
-        "criterio1": true,
-        "criterio2": true,
-        "criterio3": true,
-        "criterio4": true,
-        "criterio5": true
-      }
     }
+   
+    
+
   ],
   "formularios": [
     {

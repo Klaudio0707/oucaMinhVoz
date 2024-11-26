@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import style from "./Styles/FichaInteresse.module.css";
+import Logo from "../pages/Components/Logo";
+import Footer from "./Components/Footer";
 import api from "../apiFake/api"; // Importando a API fornecida
+
 
 function FichaInteresse() {
   const [userData, setUserData] = useState(null); // Estado para armazenar os dados do usuário
@@ -32,6 +35,8 @@ function FichaInteresse() {
   }
 
   return (
+    <div>
+<Logo />
     <div className={style["ficha-interesse-container"]}>
       <h1 className="title">
         Ficha de Interesse em Participar do Programa Pró-Equidade de Gênero e Raça - 7ª Edição
@@ -103,6 +108,8 @@ function FichaInteresse() {
           Enviar
         </button>
       </form>
+    </div>
+   <Footer />
     </div>
   );
 }

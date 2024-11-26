@@ -24,9 +24,6 @@ function GlobalButtons() {
       <button onClick={handleLogout} className={style["logout-button"]}>
         Logout
       </button>
-      <button onClick={() => navigate(1)} className={style["next-button"]}>
-        Prosseguir
-      </button>
     </div>
   );
 }

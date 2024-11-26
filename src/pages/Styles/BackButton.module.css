@@ -1,0 +1,20 @@
+.back-button {
+    position: fixed;
+    left: 20px; /* Próximo à borda esquerda */
+    top: 50%; /* Centralizado verticalmente */
+    transform: translateY(-50%); /* Alinhamento fino ao centro */
+    background-color: #3498db; /* Cor azul */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+  }
+  
+  .back-button:hover {
+    background-color: #2980b9; /* Azul mais escuro no hover */
+  }
+  

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaPaperPlane, FaFileAlt, FaTachometerAlt, FaClipboardList, FaUserPlus, FaClipboardCheck, FaChartLine } from 'react-icons/fa';
+import { FaPaperPlane, FaFileAlt,  FaClipboardList, FaUserPlus, FaClipboardCheck, FaChartLine } from 'react-icons/fa';
 import style from './Styles/dashBoard.module.css';
+import Footer from "./Components/Footer.js";
 import api from '../apiFake/api.js';
 
 function Dashboard() {
@@ -44,7 +45,7 @@ function Dashboard() {
   const links = [
     { to: "/Form-Envio", label: "Enviar Documento", icon: <FaPaperPlane />, action: handleFormSubmit },
     { to: "/Status", label: "Ver Status dos Documentos", icon: <FaFileAlt /> },
-    { to: "/DashboardGovernoII", label: "Dashboard Governo", icon: <FaTachometerAlt /> },
+  
    
     { to: "/InscricaoPrograma", label: "Inscrição", icon: <FaClipboardList /> },
     { to: "/Dados", label: "Dados", icon: <FaUserPlus /> },
@@ -53,6 +54,8 @@ function Dashboard() {
   ];
 
   return (
+    <div>
+
     <div className={style["dashboard-container"]}>
       {/* Barra superior com informações do usuário */}
       <div className={style["user-bar"]}>
@@ -84,10 +87,10 @@ function Dashboard() {
       <div className={style["link-list"]}>
         {links.map((link, index) => (
           <Link
-            key={index}
-            to={link.to}
-            className={style["card"]}
-            onClick={link.action || null}
+          key={index}
+          to={link.to}
+          className={style["card"]}
+          onClick={link.action || null}
           >
             <div className={style["icon"]}>{link.icon}</div>
             <span>
@@ -97,6 +100,8 @@ function Dashboard() {
         ))}
       </div>
     </div>
+      <Footer/>
+</div>
   );
 }
 
@@ -113,13 +118,13 @@ export default Dashboard;
 // import style from './Styles/dashBoard.module.css';
 
 // function Dashboard() {
-//   // Simulação de progresso
-//   const progressData = {
-//     totalSteps: 5, // Total de passos necessários
-//     completedSteps: 3, // Passos já concluídos
-//   };
-
-//   const progressPercentage = (progressData.completedSteps / progressData.totalSteps) * 100;
+  //   // Simulação de progresso
+  //   const progressData = {
+    //     totalSteps: 5, // Total de passos necessários
+    //     completedSteps: 3, // Passos já concluídos
+    //   };
+    
+    //   const progressPercentage = (progressData.completedSteps / progressData.totalSteps) * 100;
 
 //   const links = [
 //     { to: "/Form-Envio", label: "Enviar Documento", icon: <FaPaperPlane /> },

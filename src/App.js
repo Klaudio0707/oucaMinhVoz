@@ -10,6 +10,7 @@ import StatusDocumentos from './pages/Status';
 import GovernoDashboard from './pages/DashboardGoverno';
 import FichaInteresse from './pages/FichaInteresse';
 import DashboardGovernoII from './pages/DashboardGovernoII';
+import Cronograma from './pages/Cronograma';
 import PlanoAcao from './pages/PlanoAcao';
 import Dados from './pages/Dados';
 import GlobalButtons from './pages/Components/GlobalButtons';
@@ -115,6 +116,15 @@ function App() {
           element={
             <ProtectedRoute>
               <Suport />
+              <GlobalButtons />
+            </ProtectedRoute>
+          }
+          /> 
+           <Route
+          path="/Cronograma"
+          element={
+            <ProtectedRoute>
+            <Cronograma/>
               <GlobalButtons />
             </ProtectedRoute>
           }

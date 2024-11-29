@@ -48,11 +48,11 @@ function Login() {
   return (
     <div>
 
+    <div className={style['login-container']}>
     <div className={style["logo-container"]}>
 <img src={logo} alt="logo empresa"className={style["logo-img"]}/>
 
 </div>
-    <div className={style['login-container']}>
       <form className={style['login-form']} onSubmit={handleSubmit}>
         <h2>Login</h2>
 

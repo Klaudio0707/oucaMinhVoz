@@ -4,6 +4,7 @@
   padding: 20px;
   max-width: 800px;
   margin: 0 auto;
+  background: linear-gradient(135deg, #8e44ad, #3498db);
 }
 
 .header {
@@ -27,7 +28,7 @@
 }
 
 .formSection, .serviceList {
-  background-color: #f9f9f9;
+  background-color: #a19999;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 20px;

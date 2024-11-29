@@ -23,7 +23,7 @@
   .card {
     flex: 1;
     background-color: #007BFF;
-    color: white;
+    color: rgb(202, 198, 198);
     padding: 20px;
     border-radius: 8px;
     text-align: center;

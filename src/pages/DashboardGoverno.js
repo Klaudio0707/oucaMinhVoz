@@ -56,13 +56,13 @@ function DashboardGoverno() {
             <strong>Bem-vindo, {userData.nomeRepresentante || "Usuário"}!</strong>
             <br />
             <span>
-              <strong>Administrador:</strong> Governo
+              <strong>Ministério:</strong> Ministerio do Trabalho
             </span>
           </div>
           <div className={style["user-email"]}>
             {userData.email || "Email não informado"}
           </div>
-          <strong>CNPJ: {userData.cnpj || "CNPJ não informado"}</strong>
+     
         </div>
 
         {/* Exibir contagem de usuários cadastrados */}

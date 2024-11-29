@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Styles/InscricaoPrograma.module.css";
+import styles from "./Styles/Cronograma.module.css";
 
 function Cronograma() {
   return (

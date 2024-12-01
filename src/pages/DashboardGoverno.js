@@ -72,16 +72,14 @@ function DashboardGoverno() {
 
         {/* Botão para acessar DashboardGovernoII */}
         <div className={style["link-list"]}>
-          <button className={style["card"]} onClick={handleRedirectDash}>
-            Ir para DashboardGovernoII
-          </button>
-        </div>
-        <div className={style["link-list"]}>
-          <button className={style["card"]} onClick={handleRedirectServ}>
-            Ir para Serviços e Suporte.
-          </button>
-        </div>
-      </div>
+  <button className={style["card"]} onClick={handleRedirectDash}>
+    DashboardGoverno
+  </button>
+  <button className={style["card"]} onClick={handleRedirectServ}>
+   Serviços e Suporte.
+  </button>
+</div>
+</div>
 
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {  useNavigate } from "react-router-dom";
-import style from "./Styles/Dashboard_Governo.module.css"; // Certifique-se de ter os estilos necessários
+import style from "./Styles/Dashboard_Governo.module.css";
 
 function DashboardGoverno() {
   const [userData, setUserData] = useState({});
@@ -8,7 +8,7 @@ function DashboardGoverno() {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  // Simulando dados do administrador
+ 
   useEffect(() => {
     setUserData({
       nomeRepresentante: "Administrador",
@@ -18,7 +18,7 @@ function DashboardGoverno() {
     });
   }, []);
 
-  // Buscar usuários cadastrados do banco db.json
+
   useEffect(() => {
     const fetchUsers = async () => {
       try {

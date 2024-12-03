@@ -1,12 +1,19 @@
+const express = require('express');
+const cors = require('cors');
 const jsonServer = require('json-server');
-const server = jsonServer.create();
-const router = jsonServer.router('apiFake/db.json');
+const path = require('path');
+
+const server = express();
+const router = jsonServer.router(path.join(__dirname, 'db.json'));
 const middlewares = jsonServer.defaults();
 
+// Habilita CORS
+server.use(cors());
 server.use(middlewares);
 server.use(router);
 
-const PORT = process.env.PORT || 5001; // Certifique-se de usar uma porta que não conflite
+// Porta será definida pela Vercel automaticamente
+const PORT = process.env.PORT || 5001;
 server.listen(PORT, () => {
-  console.log(`JSON Server está rodando na porta ${PORT}`);
+  console.log(`JSON Server is running on port ${PORT}`);
 });

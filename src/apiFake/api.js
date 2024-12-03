@@ -1,7 +1,4 @@
-const BASE_URL =
-  process.env.NODE_ENV === 'production'
-    ? 'https://seu-projeto.vercel.app/api'
-    : 'http://localhost:5001';
+const BASE_URL = 'https://api-fake-i3cce2wlr-claudio-robertos-projects.vercel.app';
 const ENDPOINTS = {
   USERS: `${BASE_URL}/users`,
   FORMULARIOS: `${BASE_URL}/formularios`,

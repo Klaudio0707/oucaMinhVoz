@@ -1,4 +1,7 @@
-const BASE_URL = 'http://localhost:5001';
+const BASE_URL =
+  process.env.NODE_ENV === 'production'
+    ? 'https://seu-projeto.vercel.app/api'
+    : 'http://localhost:5001';
 const ENDPOINTS = {
   USERS: `${BASE_URL}/users`,
   FORMULARIOS: `${BASE_URL}/formularios`,

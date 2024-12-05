@@ -1,4 +1,7 @@
-const BASE_URL = 'https://api-fake-i3cce2wlr-claudio-robertos-projects.vercel.app';
+// Busca a URL do backend do arquivo de ambiente
+const BASE_URL = process.env.REACT_APP_BACKEND_URL;
+
+// Define os endpoints da API
 const ENDPOINTS = {
   USERS: `${BASE_URL}/users`,
   FORMULARIOS: `${BASE_URL}/formularios`,
@@ -15,7 +18,7 @@ const CONFIG = {
 class APIError extends Error {
   constructor(message, status) {
     super(message);
-    this.nameUser = 'APIError';
+    this.name = 'APIError';
     this.status = status;
   }
 }
@@ -44,10 +47,7 @@ const handleResponse = async (response) => {
   const data = await response.json().catch(() => ({}));
 
   if (!response.ok) {
-    throw new APIError(
-      data.message || 'Erro na requisição',
-      response.status
-    );
+    throw new APIError(data.message || 'Erro na requisição', response.status);
   }
 
   return data;
@@ -78,22 +78,15 @@ const fetchWithConfig = async (url, options = {}) => {
 // API principal
 const api = {
   auth: {
-    async login(email, senha, nomeEmpresa, nomeRepresentante) {
+    async login(email, senha) {
       try {
-        const response = await fetchWithConfig(`${ENDPOINTS.USERS}`, {
-          method: 'GET',
+        const response = await fetchWithConfig(`${ENDPOINTS.USERS}/login`, {
+          method: 'POST',
+          body: JSON.stringify({ email, senha }),
         });
 
-        const user = response.find(
-          (user) => user.email === email && user.senha === senha
-        );
+        const { token, user } = response;
 
-        if (!user) {
-          throw new APIError('Email ou senha inválidos');
-        }
-
-        // Simula geração de token e autenticação
-        const token = `fake-token-${Date.now()}`;
         storage.setItem('token', token);
         storage.setItem('userId', user.id);
 
@@ -161,7 +154,7 @@ const api = {
       }
 
       return fetchWithConfig(`${ENDPOINTS.FORMULARIOS}/${id}`, {
-        method: 'PATCH',
+        method: 'PUT',
         body: JSON.stringify(dadosAtualizados),
       });
     },
@@ -183,4 +176,3 @@ const api = {
 };
 
 export default api;
-

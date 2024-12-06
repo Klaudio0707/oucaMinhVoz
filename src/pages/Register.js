@@ -64,7 +64,7 @@ function Register() {
         nomeRepresentante,
         email,
         senha,
-        telefone:data.ddd_telefone_1, // Prioriza o telefone do formulário
+        telefone: data.ddd_telefone_1, // Prioriza o telefone do formulário
         cnpj,
         nomeEmpresa: data.razao_social,
         endereco: `${data.logradouro}, ${data.numero}, ${data.municipio}, - ${data.uf}`,
@@ -192,6 +192,5 @@ function Register() {
 }
 
 export default Register;
-
 
 

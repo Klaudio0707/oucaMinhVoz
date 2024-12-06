@@ -7,11 +7,14 @@ function SupportPage() {
   const [newService, setNewService] = useState({ name: "", description: "" });
   const [error, setError] = useState("");
 
-  // Função para buscar os serviços existentes da API fake
+  // URL do backend no Render (substitua com a URL real do seu backend)
+  const API_URL = process.env.REACT_APP_API_URL; 
+
+  // Função para buscar os serviços existentes da API no backend online
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await axios.get("http://localhost:5001/servicos");
+        const response = await axios.get(API_URL);
         setServices(response.data);
       } catch (err) {
         console.error("Erro ao buscar serviços:", err);
@@ -31,7 +34,7 @@ function SupportPage() {
     }
 
     try {
-      const response = await axios.post("http://localhost:5001/servicos", newService);
+      const response = await axios.post(API_URL, newService);
       setServices((prev) => [...prev, response.data]);
       setNewService({ name: "", description: "" });
       setError(""); // Limpa o erro, se existir
@@ -96,7 +99,7 @@ function SupportPage() {
           ) : (
             <ul>
               {services.map((service) => (
-                <li key={service.id} className={styles.serviceItem}>
+                <li key={service._id} className={styles.serviceItem}>
                   <h3>{service.name}</h3>
                   <p>{service.description}</p>
                 </li>
@@ -110,4 +113,3 @@ function SupportPage() {
 }
 
 export default SupportPage;
-

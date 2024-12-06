@@ -33,7 +33,7 @@ function Login() {
       if (user.tipo === 'governo') {
         navigate('/DashboardGoverno');
       } else if (user.tipo === 'empresa') {
-        navigate('/dashboard');
+        navigate('/Dashboard');
       } else {
         throw new Error('Tipo de usuário desconhecido.');
       }

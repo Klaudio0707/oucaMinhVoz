@@ -1,10 +1,14 @@
 // Busca a URL do backend do arquivo de ambiente
-const BASE_URL = process.env.REACT_APP_BACKEND_URL;
+const BASE_URL = process.env.REACT_APP_API_URL;
 
 // Define os endpoints da API
 const ENDPOINTS = {
   USERS: `${BASE_URL}/users`,
   FORMULARIOS: `${BASE_URL}/formularios`,
+  FICHA_INSCRICAO: `${BASE_URL}/fichaInscricao`,
+  SERVICOS: `${BASE_URL}/servicos`, // Endpoint para serviços
+  FORMULARIOS_APROVADOS: `${BASE_URL}/formularios/aprovados`,
+  FORMULARIOS_REJEITADOS: `${BASE_URL}/formularios/rejeitados`,
 };
 
 // Configuração padrão para requisições
@@ -171,6 +175,57 @@ const api = {
       }
 
       return fetchWithConfig(`${ENDPOINTS.FORMULARIOS}/${id}`);
+    },
+
+    async getEmpresasAprovadas() {
+      return fetchWithConfig(ENDPOINTS.FORMULARIOS_APROVADOS);
+    },
+
+    async getEmpresasRejeitadas() {
+      return fetchWithConfig(ENDPOINTS.FORMULARIOS_REJEITADOS);
+    },
+  },
+
+  fichaInscricao: {
+    async criar(dadosFicha) {
+      return fetchWithConfig(ENDPOINTS.FICHA_INSCRICAO, {
+        method: 'POST',
+        body: JSON.stringify(dadosFicha),
+      });
+    },
+  },
+
+  servicos: {
+    async listar() {
+      return fetchWithConfig(ENDPOINTS.SERVICOS);
+    },
+
+    async criar(dadosServico) {
+      return fetchWithConfig(ENDPOINTS.SERVICOS, {
+        method: 'POST',
+        body: JSON.stringify(dadosServico),
+      });
+    },
+
+    async atualizar(id, dadosAtualizados) {
+      if (!id) {
+        throw new APIError('ID do serviço é obrigatório');
+      }
+
+      return fetchWithConfig(`${ENDPOINTS.SERVICOS}/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(dadosAtualizados),
+      });
+    },
+
+    async excluir(id) {
+      if (!id) {
+        throw new APIError('ID do serviço é obrigatório');
+      }
+
+      return fetchWithConfig(`${ENDPOINTS.SERVICOS}/${id}`, {
+        method: 'DELETE',
+      });
     },
   },
 };

@@ -8,6 +8,12 @@ function FichaInteresse() {
   const [userData, setUserData] = useState(null); // Estado para armazenar os dados do usuário
   const [loading, setLoading] = useState(true); // Estado para controle de carregamento
   const [error, setError] = useState(null); // Estado para mensagens de erro
+  const [formData, setFormData] = useState({
+    nomeContato: "",
+    cargoContato: "",
+    telefoneContato: "",
+    emailContato: "",
+  }); // Estado para armazenar os dados do formulário
 
   useEffect(() => {
     // Função para buscar os dados do usuário autenticado
@@ -24,6 +30,34 @@ function FichaInteresse() {
 
     fetchUserData();
   }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      // Enviar os dados do formulário para a API
+      const response = await fetch(`${process.env.ENDPOINTS.USERS}/fichaInteresse`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) {
+        throw new Error("Erro ao enviar os dados.");
+      }
+      alert("Ficha de Interesse enviada com sucesso!");
+    } catch (err) {
+      alert("Erro ao enviar os dados: " + err.message);
+    }
+  };
 
   if (loading) {
     return <p>Carregando...</p>;
@@ -45,7 +79,7 @@ function FichaInteresse() {
           E-mail: programaproequidade@mulheres.gov.br | Tel: (61) 2027-3083
         </p>
 
-        <form className={style["ficha-form"]}>
+        <form className={style["ficha-form"]} onSubmit={handleSubmit}>
           <section className={style["section"]}>
             <h2 className={style["section-title"]}>DADOS DA ORGANIZAÇÃO</h2>
             <p>
@@ -87,19 +121,43 @@ function FichaInteresse() {
             <h2 className={style["section-title"]}>DADOS DO CONTATO NA ORGANIZAÇÃO</h2>
             <label>
               Nome:
-              <input type="text" className={style["input-field"]} />
+              <input
+                type="text"
+                className={style["input-field"]}
+                name="nomeContato"
+                value={formData.nomeContato}
+                onChange={handleChange}
+              />
             </label>
             <label>
               Cargo:
-              <input type="text" className={style["input-field"]} />
+              <input
+                type="text"
+                className={style["input-field"]}
+                name="cargoContato"
+                value={formData.cargoContato}
+                onChange={handleChange}
+              />
             </label>
             <label>
               Telefone:
-              <input type="tel" className={style["input-field"]} />
+              <input
+                type="tel"
+                className={style["input-field"]}
+                name="telefoneContato"
+                value={formData.telefoneContato}
+                onChange={handleChange}
+              />
             </label>
             <label>
               E-mail:
-              <input type="email" className={style["input-field"]} />
+              <input
+                type="email"
+                className={style["input-field"]}
+                name="emailContato"
+                value={formData.emailContato}
+                onChange={handleChange}
+              />
             </label>
           </section>
 

@@ -23,7 +23,7 @@ function Login() {
 
     try {
       // Fazendo o GET para buscar todos os usuários
-      const response = await fetch(`${apiUrl}/users`);  // Requisição à API
+      const response = await fetch("https://api-ouca.onrender.com/users");  // Requisição à API
       if (!response.ok) {
         throw new Error('Erro ao carregar dados dos usuários.');
       }

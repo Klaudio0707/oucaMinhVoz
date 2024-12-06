@@ -18,13 +18,13 @@ function Login() {
     setErro('');  // Limpa erros anteriores
     setLoading(true);  // Inicia o carregamento
 
-    const apiUrl = "https://api-ouca.onrender.com";
+    const apiUrl = "https://api-ouca.onrender.com/users";
 
     console.log("API URL:", apiUrl);  // Log para verificar se a URL está sendo carregada corretamente
 
     try {
       // Fazendo o GET para buscar todos os usuários
-      const response = await fetch(`${apiUrl}/users`,);  // Requisição à API
+      const response = await fetch(`${apiUrl}`,);  // Requisição à API
       if (!response.ok) {
         throw new Error('Erro ao carregar dados dos usuários.');
       }

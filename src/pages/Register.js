@@ -50,13 +50,17 @@ function Register() {
     try {
       setLoading(true);
 
-      // Consulta os dados do CNPJ
+      // Consulta os dados do CNPJ usando a API externa
       const response = await fetch(`https://brasilapi.com.br/api/cnpj/v1/${cnpj}`);
       if (!response.ok) {
         throw new Error("CNPJ inválido ou não encontrado.");
       }
 
       const data = await response.json();
+      if (!data.razao_social || !data.ddd_telefone_1) {
+        throw new Error("Dados da empresa não encontrados ou incompletos.");
+      }
+      
       setEmpresaData(data);
 
       // Cria o payload do usuário com os dados da empresa
@@ -73,14 +77,9 @@ function Register() {
 
       // URL da API (não usando .env, URL está fixa aqui)
       const apiUrl = "https://api-ouca.onrender.com";
-
       console.log("API URL:", apiUrl); // Verifica se a URL está sendo carregada corretamente
 
-      if (!apiUrl) {
-        throw new Error("A URL da API não foi configurada corretamente.");
-      }
-
-      // Envia os dados do usuário para o backend usando a URL fixa
+      // Envia os dados do usuário para o backend
       const userResponse = await fetch(`${apiUrl}/users`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -89,7 +88,7 @@ function Register() {
 
       if (userResponse.ok) {
         localStorage.setItem("token", "token-simulado"); // Simula um token
-        navigate("/Dashboard");
+        navigate("/Dashboard"); // Redireciona para o Dashboard
       } else {
         setError("Erro ao cadastrar. Tente novamente.");
       }
@@ -201,5 +200,3 @@ function Register() {
 }
 
 export default Register;
-
-

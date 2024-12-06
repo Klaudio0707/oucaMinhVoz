@@ -15,30 +15,32 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErro('');  // Limpa erros anteriores
-    setLoading(true);  // Inicia o carregamento
-
-    const apiUrl = "https://api-ouca.onrender.com/users";
-
-    console.log("API URL:", apiUrl);  // Log para verificar se a URL está sendo carregada corretamente
-
+    setErro(''); // Limpar erros anteriores
+    setLoading(true);
+  
+    const apiUrl = process.env.REACT_APP_API_URL;
+    console.log("API URL:", apiUrl);
+  
     try {
       // Fazendo o GET para buscar todos os usuários
-      const response = await fetch(apiUrl);  // Requisição à API
+      const response = await fetch(`${apiUrl}/users`); // Altere para a URL do seu backend
       if (!response.ok) {
         throw new Error('Erro ao carregar dados dos usuários.');
       }
+  
       const usuarios = await response.json();
-
+  
       // Procurando pelo usuário com o email e senha informados
-      const usuario = usuarios.find(user => user.email === email && user.senha === senha);
-
+      const usuario = usuarios.find(user => 
+        user.email === email && user.senha === senha && user.nomeRepresentante // Certifique-se que o usuário tem os dados corretos
+      );
+  
       if (usuario) {
         console.log('Usuário autenticado:', usuario);
-
+  
         // Armazena o usuário no contexto
         setUser(usuario);
-
+  
         // Redireciona com base no tipo de usuário
         if (usuario.tipo === 'governo') {
           navigate('/DashboardGoverno');
@@ -54,10 +56,10 @@ function Login() {
       setErro(error.message || 'Erro ao fazer login. Verifique suas credenciais e tente novamente.');
       console.error('Erro ao autenticar:', error);
     } finally {
-      setLoading(false);  // Finaliza o carregamento
+      setLoading(false);
     }
   };
-
+  
   return (
     <div>
       <div className={style['login-container']}>

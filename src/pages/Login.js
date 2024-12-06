@@ -1,92 +1,72 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useUser } from './Services/UserContext'; // Importa o contexto do usuário
 import logo from '../img/logo-ouca-minhA.png';
 import Footer from './Components/Footer';
+import {Link} from "react-router-dom";
 import style from './Styles/Login.module.css';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [erro, setErro] = useState('');
-  const [loading, setLoading] = useState(false); // Estado para controle do carregamento
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { setUser } = useUser(); // Obtém o método para salvar o usuário no contexto
+  const { setUser } = useUser();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErro(''); // Limpa mensagens de erro anteriores
-    setLoading(true); // Inicia o estado de carregamento
+    setErro('');
+    setLoading(true);
 
     const apiUrl = process.env.REACT_APP_BACKEND_URL; // URL da sua API
-    const timeoutDuration = 5000; // Define o tempo limite de 5 segundos (5000ms)
+    const timeoutDuration = 5000;
     console.log('API URL:', apiUrl);
 
-    // Cria um controller para abortar a requisição se ultrapassar o tempo limite
+    // Aborta a requisição após o timeout
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), timeoutDuration); // Aborta a requisição após o timeout
+    const timeoutId = setTimeout(() => controller.abort(), timeoutDuration);
 
     try {
-      // Fazendo a requisição GET para buscar todos os usuários
-      const response = await fetch(`${apiUrl}/users`, {
-        method: 'GET',
+      // Fazendo a requisição POST para login
+      const response = await fetch(`${apiUrl}/login`, {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        credentials: 'include', // Adiciona credenciais se necessário
-        signal: controller.signal, // Passa o sinal do AbortController
+        body: JSON.stringify({ email, senha }), // Envia o email e senha para o backend
+        signal: controller.signal,
       });
 
-      clearTimeout(timeoutId); // Limpa o timeout se a requisição for completada a tempo
+      clearTimeout(timeoutId); // Limpa o timeout
 
       if (!response.ok) {
-        throw new Error('Erro ao carregar dados dos usuários.');
-      }
-
-      const usuarios = await response.json();
-
-      // Procurando pelo usuário com o email e senha informados
-      const usuario = usuarios.find(
-        (user) => user.email === email && user.senha === senha
-      );
-
-      if (usuario) {
-        console.log('Usuário autenticado:', usuario);
-
-        // Armazena o usuário no contexto
-        setUser(usuario);
-
-        // Verifica o tipo de usuário ou redireciona para o dashboard de empresa se não houver tipo
-        if (usuario.tipo) {
-          switch (usuario.tipo) {
-            case 'governo':
-              navigate('/dashboardGoverno');
-              break;
-            case 'empresa':
-              navigate('/dashboard');
-              break;
-            default:
-              throw new Error('Tipo de usuário desconhecido.');
-          }
-        } else {
-          // Se o tipo não existir, redireciona para o dashboard de empresa
-          navigate('/dashboard');
-        }
-      } else {
         throw new Error('Email ou senha incorretos.');
       }
+
+      const usuario = await response.json();
+
+      console.log('Usuário autenticado:', usuario);
+
+      // Armazena o usuário no contexto
+      setUser(usuario);
+
+      // Redireciona para o dashboard do tipo de usuário
+      if (usuario.tipo === 'governo') {
+        navigate('/DashboardGoverno');
+      } else {
+        navigate('/Dashboard');
+      }
+
     } catch (error) {
-      // Verifica se o erro é devido ao timeout
       if (error.name === 'AbortError') {
         setErro('Tempo de resposta da API excedido. Tente novamente.');
-      } else if (error.message.includes('CORS')) {
-        setErro('Erro de CORS. A API não permite requisições de seu frontend.');
       } else {
-        setErro(error.message || 'Erro ao fazer login. Tente novamente mais tarde.');
+        setErro(error.message || 'Erro ao fazer login. Tente novamente.');
       }
       console.error('Erro ao autenticar:', error);
     } finally {
-      setLoading(false); // Finaliza o estado de carregamento
+      setLoading(false);
     }
   };
 

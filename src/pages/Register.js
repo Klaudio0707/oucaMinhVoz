@@ -17,7 +17,6 @@ function Register() {
     criterio4: false,
     criterio5: false,
   });
-
   const [error, setError] = useState(""); // Para exibir mensagens de erro
   const [loading, setLoading] = useState(false); // Estado de carregamento para o botão enviar
 
@@ -75,9 +74,9 @@ function Register() {
         criterios,
       };
 
-      // URL da API (não usando .env, URL está fixa aqui)
-      const apiUrl = "https://api-ouca.onrender.com";
-      console.log("API URL:", apiUrl); // Verifica se a URL está sendo carregada corretamente
+      // URL da API usando a variável de ambiente
+      const apiUrl = process.env.REACT_APP_BACKEND_URL; // URL da sua API
+      console.log('API URL:', apiUrl); // Verifica se a URL está sendo carregada corretamente
 
       // Envia os dados do usuário para o backend
       const userResponse = await fetch(`${apiUrl}/users`, {
@@ -87,8 +86,15 @@ function Register() {
       });
 
       if (userResponse.ok) {
-        localStorage.setItem("token", "token-simulado"); // Simula um token
-        navigate("/Dashboard"); // Redireciona para o Dashboard
+        // Simula um token (realmente será necessário um sistema de autenticação)
+        localStorage.setItem("token", "token-simulado");
+
+        // Redireciona para o dashboard de acordo com o tipo
+        if (data.tipo === "empresa") {
+          navigate("/dashboard");
+        } else {
+          navigate("/dashboardGoverno");
+        }
       } else {
         setError("Erro ao cadastrar. Tente novamente.");
       }

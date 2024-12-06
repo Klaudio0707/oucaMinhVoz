@@ -56,16 +56,21 @@ function Login() {
         // Armazena o usuário no contexto
         setUser(usuario);
 
-        // Redireciona com base no tipo de usuário
-        switch (usuario.tipo) {
-          case 'governo':
-            navigate('/dashboardGoverno');
-            break;
-          case 'empresa':
-            navigate('/dashboard');
-            break;
-          default:
-            throw new Error('Tipo de usuário desconhecido.');
+        // Verifica o tipo de usuário ou redireciona para o dashboard de empresa se não houver tipo
+        if (usuario.tipo) {
+          switch (usuario.tipo) {
+            case 'governo':
+              navigate('/dashboardGoverno');
+              break;
+            case 'empresa':
+              navigate('/dashboard');
+              break;
+            default:
+              throw new Error('Tipo de usuário desconhecido.');
+          }
+        } else {
+          // Se o tipo não existir, redireciona para o dashboard de empresa
+          navigate('/dashboard');
         }
       } else {
         throw new Error('Email ou senha incorretos.');

@@ -18,7 +18,7 @@ function Login() {
     setErro(''); // Limpar erros anteriores
     setLoading(true);
   
-    const apiUrl = process.env.REACT_APP_API_URL;
+    const apiUrl = "https://api-ouca.onrender.com";
     console.log("API URL:", apiUrl);
   
     try {

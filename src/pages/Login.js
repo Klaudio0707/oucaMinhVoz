@@ -24,7 +24,7 @@ function Login() {
 
     try {
       // Fazendo o GET para buscar todos os usuários
-      const response = await fetch(`${apiUrl}`,);  // Requisição à API
+      const response = await fetch(apiUrl);  // Requisição à API
       if (!response.ok) {
         throw new Error('Erro ao carregar dados dos usuários.');
       }

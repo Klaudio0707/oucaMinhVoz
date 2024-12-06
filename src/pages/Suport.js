@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import axios from "axios"; // Biblioteca para requisições HTTP
 import styles from "./Styles/SuportPage.module.css";
 
+// URL do backend no Render (substitua com a URL real do seu backend)
+const API_URL = process.env.REACT_APP_API_URL;
+
 function SupportPage() {
   const [services, setServices] = useState([]);
   const [newService, setNewService] = useState({ name: "", description: "" });
   const [error, setError] = useState("");
 
-  // URL do backend no Render (substitua com a URL real do seu backend)
-  const API_URL = process.env.REACT_APP_API_URL; 
-
-  // Função para buscar os serviços existentes da API no backend online
+  // Busca os serviços existentes da API no backend online
   useEffect(() => {
     const fetchServices = async () => {
       try {
@@ -23,7 +23,7 @@ function SupportPage() {
     };
 
     fetchServices();
-  }, []);
+  }, []); // Nenhum erro no ESLint, pois API_URL é uma constante global
 
   // Função para adicionar um novo serviço
   const handleAddService = async (e) => {
@@ -92,7 +92,9 @@ function SupportPage() {
         <section className={styles.serviceList}>
           <h2>Serviços Existentes</h2>
           <div className={styles.summary}>
-            <p><strong>Total de Solicitações:</strong> {services.length}</p>
+            <p>
+              <strong>Total de Solicitações:</strong> {services.length}
+            </p>
           </div>
           {services.length === 0 ? (
             <p>Nenhum serviço adicionado ainda.</p>
@@ -113,3 +115,4 @@ function SupportPage() {
 }
 
 export default SupportPage;
+

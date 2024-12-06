@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import api from "../apiFake/api"; // Importa a nova API configurada
 import { useUser } from './Services/UserContext'; // Importa o contexto do usuário
 import logo from '../img/logo-ouca-minhA.png';
 import Footer from './Components/Footer';
@@ -16,32 +15,45 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErro('');
-    setLoading(true);
+    setErro('');  // Limpa erros anteriores
+    setLoading(true);  // Inicia o carregamento
+    const apiUrl = process.env.REACT_APP_API_URL;  // URL da API configurada no .env
+
+    console.log("API URL:", apiUrl);  // Log para verificar se a URL está sendo carregada corretamente
 
     try {
-      // Chama a API de autenticação com email e senha
-      const { user, token } = await api.auth.login(email, senha);
+      // Fazendo o GET para buscar todos os usuários
+      const response = await fetch(`${apiUrl}/users`);  // Requisição à API
+      if (!response.ok) {
+        throw new Error('Erro ao carregar dados dos usuários.');
+      }
+      const usuarios = await response.json();
 
-      console.log('Usuário autenticado:', user);
-      console.log('Token gerado:', token);
+      // Procurando pelo usuário com o email e senha informados
+      const usuario = usuarios.find(user => user.email === email && user.senha === senha);
 
-      // Armazena o usuário no contexto
-      setUser(user);
+      if (usuario) {
+        console.log('Usuário autenticado:', usuario);
 
-      // Redireciona com base no tipo de usuário
-      if (user.tipo === 'governo') {
-        navigate('/DashboardGoverno');
-      } else if (user.tipo === 'empresa') {
-        navigate('/Dashboard');
+        // Armazena o usuário no contexto
+        setUser(usuario);
+
+        // Redireciona com base no tipo de usuário
+        if (usuario.tipo === 'governo') {
+          navigate('/DashboardGoverno');
+        } else if (usuario.tipo === 'empresa') {
+          navigate('/Dashboard');
+        } else {
+          throw new Error('Tipo de usuário desconhecido.');
+        }
       } else {
-        throw new Error('Tipo de usuário desconhecido.');
+        throw new Error('Email ou senha incorretos.');
       }
     } catch (error) {
       setErro(error.message || 'Erro ao fazer login. Verifique suas credenciais e tente novamente.');
       console.error('Erro ao autenticar:', error);
     } finally {
-      setLoading(false);
+      setLoading(false);  // Finaliza o carregamento
     }
   };
 
@@ -82,7 +94,11 @@ function Login() {
           </div>
 
           {/* Botão de envio com estado de carregamento */}
-          <button type="submit" className={style['btn-submit']} disabled={loading}>
+          <button 
+            type="submit" 
+            className={style['btn-submit']} 
+            disabled={loading || !email || !senha}  // Desabilita o botão se campos estiverem vazios
+          >
             {loading ? 'Entrando...' : 'Entrar'}
           </button>
 

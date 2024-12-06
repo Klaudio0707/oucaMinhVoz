@@ -18,7 +18,7 @@ function Login() {
     setErro(''); // Limpa mensagens de erro anteriores
     setLoading(true); // Inicia o estado de carregamento
 
-    const apiUrl = 'https://api-ouca.onrender.com'; // URL da sua API
+    const apiUrl = process.env.REACT_APP_BACKEND_URL; // URL da sua API
     const timeoutDuration = 5000; // Define o tempo limite de 5 segundos (5000ms)
     console.log('API URL:', apiUrl);
 
@@ -59,10 +59,10 @@ function Login() {
         // Redireciona com base no tipo de usuário
         switch (usuario.tipo) {
           case 'governo':
-            navigate('/DashboardGoverno');
+            navigate('/dashboardGoverno');
             break;
           case 'empresa':
-            navigate('/Dashboard');
+            navigate('/dashboard');
             break;
           default:
             throw new Error('Tipo de usuário desconhecido.');
@@ -74,6 +74,8 @@ function Login() {
       // Verifica se o erro é devido ao timeout
       if (error.name === 'AbortError') {
         setErro('Tempo de resposta da API excedido. Tente novamente.');
+      } else if (error.message.includes('CORS')) {
+        setErro('Erro de CORS. A API não permite requisições de seu frontend.');
       } else {
         setErro(error.message || 'Erro ao fazer login. Tente novamente mais tarde.');
       }

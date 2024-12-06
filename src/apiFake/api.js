@@ -1,5 +1,6 @@
 // Busca a URL do backend do arquivo de ambiente
-const BASE_URL = process.env.REACT_APP_API_URL;
+const BASE_URL = process.env.REACT_APP_API_URL || "https://api-ouca.onrender.com";
+
 
 // Define os endpoints da API
 const ENDPOINTS = {

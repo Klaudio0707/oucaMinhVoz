@@ -9,62 +9,85 @@ function Login() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [erro, setErro] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false); // Estado para controle do carregamento
   const navigate = useNavigate();
   const { setUser } = useUser(); // Obtém o método para salvar o usuário no contexto
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErro(''); // Limpar erros anteriores
-    setLoading(true);
-  
-    const apiUrl = "https://api-ouca.onrender.com";
-    console.log("API URL:", apiUrl);
-  
+    setErro(''); // Limpa mensagens de erro anteriores
+    setLoading(true); // Inicia o estado de carregamento
+
+    const apiUrl = 'https://api-ouca.onrender.com'; // URL da sua API
+    const timeoutDuration = 5000; // Define o tempo limite de 5 segundos (5000ms)
+    console.log('API URL:', apiUrl);
+
+    // Cria um controller para abortar a requisição se ultrapassar o tempo limite
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeoutDuration); // Aborta a requisição após o timeout
+
     try {
-      // Fazendo o GET para buscar todos os usuários
-      const response = await fetch(`${apiUrl}/users`); // Altere para a URL do seu backend
+      // Fazendo a requisição GET para buscar todos os usuários
+      const response = await fetch(`${apiUrl}/users`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include', // Adiciona credenciais se necessário
+        signal: controller.signal, // Passa o sinal do AbortController
+      });
+
+      clearTimeout(timeoutId); // Limpa o timeout se a requisição for completada a tempo
+
       if (!response.ok) {
         throw new Error('Erro ao carregar dados dos usuários.');
       }
-  
+
       const usuarios = await response.json();
-  
+
       // Procurando pelo usuário com o email e senha informados
-      const usuario = usuarios.find(user => 
-        user.email === email && user.senha === senha && user.nomeRepresentante // Certifique-se que o usuário tem os dados corretos
+      const usuario = usuarios.find(
+        (user) => user.email === email && user.senha === senha
       );
-  
+
       if (usuario) {
         console.log('Usuário autenticado:', usuario);
-  
+
         // Armazena o usuário no contexto
         setUser(usuario);
-  
+
         // Redireciona com base no tipo de usuário
-        if (usuario.tipo === 'governo') {
-          navigate('/DashboardGoverno');
-        } else if (usuario.tipo === 'empresa') {
-          navigate('/Dashboard');
-        } else {
-          throw new Error('Tipo de usuário desconhecido.');
+        switch (usuario.tipo) {
+          case 'governo':
+            navigate('/DashboardGoverno');
+            break;
+          case 'empresa':
+            navigate('/Dashboard');
+            break;
+          default:
+            throw new Error('Tipo de usuário desconhecido.');
         }
       } else {
         throw new Error('Email ou senha incorretos.');
       }
     } catch (error) {
-      setErro(error.message || 'Erro ao fazer login. Verifique suas credenciais e tente novamente.');
+      // Verifica se o erro é devido ao timeout
+      if (error.name === 'AbortError') {
+        setErro('Tempo de resposta da API excedido. Tente novamente.');
+      } else {
+        setErro(error.message || 'Erro ao fazer login. Tente novamente mais tarde.');
+      }
       console.error('Erro ao autenticar:', error);
     } finally {
-      setLoading(false);
+      setLoading(false); // Finaliza o estado de carregamento
     }
   };
-  
+
   return (
     <div>
       <div className={style['login-container']}>
         <div className={style['logo-container']}>
-          <img src={logo} alt="logo empresa" className={style['logo-img']} />
+          <img src={logo} alt="Logo Ouca Minha Voz" className={style['logo-img']} />
         </div>
         <form className={style['login-form']} onSubmit={handleSubmit}>
           <h2>Login</h2>
@@ -97,10 +120,10 @@ function Login() {
           </div>
 
           {/* Botão de envio com estado de carregamento */}
-          <button 
-            type="submit" 
-            className={style['btn-submit']} 
-            disabled={loading || !email || !senha}  // Desabilita o botão se campos estiverem vazios
+          <button
+            type="submit"
+            className={style['btn-submit']}
+            disabled={loading || !email || !senha} // Desabilita o botão se campos estiverem vazios
           >
             {loading ? 'Entrando...' : 'Entrar'}
           </button>

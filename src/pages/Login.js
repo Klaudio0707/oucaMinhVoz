@@ -17,13 +17,14 @@ function Login() {
     e.preventDefault();
     setErro('');  // Limpa erros anteriores
     setLoading(true);  // Inicia o carregamento
-    const apiUrl = process.env.REACT_APP_API_URL;  // URL da API configurada no .env
+
+    const apiUrl = "https://api-ouca.onrender.com";
 
     console.log("API URL:", apiUrl);  // Log para verificar se a URL está sendo carregada corretamente
 
     try {
       // Fazendo o GET para buscar todos os usuários
-      const response = await fetch("https://api-ouca.onrender.com/users");  // Requisição à API
+      const response = await fetch(`${apiUrl}/users`,);  // Requisição à API
       if (!response.ok) {
         throw new Error('Erro ao carregar dados dos usuários.');
       }

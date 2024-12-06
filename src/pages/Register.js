@@ -71,24 +71,25 @@ function Register() {
         criterios,
       };
 
-      // Envia os dados do usuário para o backend
-      const apiUrl = process.env.REACT_APP_API_URL;
-      console.log("API URL:", apiUrl);
-  
+      // URL da API (não usando .env, URL está fixa aqui)
+      const apiUrl = "https://api-ouca.onrender.com";
+
+      console.log("API URL:", apiUrl); // Verifica se a URL está sendo carregada corretamente
+
       if (!apiUrl) {
         throw new Error("A URL da API não foi configurada corretamente.");
       }
-  
-      // Envia os dados do usuário para o backend
+
+      // Envia os dados do usuário para o backend usando a URL fixa
       const userResponse = await fetch(`${apiUrl}/users`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-  
+
       if (userResponse.ok) {
-        localStorage.setItem("token", "token-simulado");
-        navigate("/dashboard");
+        localStorage.setItem("token", "token-simulado"); // Simula um token
+        navigate("/Dashboard");
       } else {
         setError("Erro ao cadastrar. Tente novamente.");
       }

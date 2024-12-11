@@ -1,93 +1,115 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import style from "./Styles/Dashboard_Governo.module.css"; // Certifique-se de ter os estilos necessários
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import {
+  FaFileAlt,
+  FaClipboardList,
+  FaUserPlus,
+  FaClipboardCheck,
+  FaChartLine,
+} from 'react-icons/fa';
+import style from './Styles/dashBoard.module.css';
+import Logout from './Components/LogoutButton.js';
+import Footer from './Components/Footer.js';
+import api from '../apiFake/api.js';
 
-function DashboardGoverno() {
-  const [userData, setUserData] = useState({});
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
+function Dashboard() {
+  const [progress, setProgress] = useState({ totalSteps: 5, completedSteps: 0 });
+  const [userData, setUserData] = useState({ nomeRepresentante: '', nomeEmpresa: '', cnpj: '', email: '' });
+  const [loading, setLoading] = useState(false);
+  const [formsSubmitted, setFormsSubmitted] = useState(0);
 
-  // Simulando dados do administrador
   useEffect(() => {
-    setUserData({
-      nomeRepresentante: "Administrador",
-      email: "admin@governo.br",
-      senha: "123456",
-      cnpj: "12345678000190"
-    });
-  }, []);
-
-  // Buscar usuários cadastrados do banco db.json
-  useEffect(() => {
-    const fetchUsers = async () => {
+    async function fetchUserData() {
       try {
-        const apiUrl = process.env.REACT_APP_API_URL; // Obtém a URL da API a partir do arquivo .env
-        const response = await fetch(`${apiUrl}/users`); // Use a URL configurada no .env
-        if (!response.ok) {
-          throw new Error('Erro ao buscar usuários');
-        }
-        const data = await response.json();
-        setUsers(data);
-      } catch (err) {
-        console.error("Erro ao conectar ao banco:", err);
-        setUsers([]); // Garantir que não haja dados incorretos ou em branco
-      } finally {
-        setLoading(false);
+        const user = await api.users.get();
+        setUserData(user);
+      } catch (error) {
+        console.error('Erro ao buscar dados do usuário:', error);
       }
-    };
-
-    fetchUsers();
+    }
+    fetchUserData();
   }, []);
 
-  // Redirecionar para DashboardGovernoII
-  const handleRedirectDash = () => {
-    navigate("/DashboardGovernoII");
+  const handleFormSubmit = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setFormsSubmitted((prev) => prev + 1);
+      setLoading(false);
+    }, 1000);
   };
 
-  const handleRedirectServ = () => {
-    navigate("/Suport");
-  };
+  useEffect(() => {
+    setProgress((prev) => ({
+      ...prev,
+      completedSteps: formsSubmitted,
+    }));
+  }, [formsSubmitted]);
+
+  const progressPercentage = (progress.completedSteps / progress.totalSteps) * 100;
+
+  const links = [
+    { to: '/Status', label: 'Ver Status', icon: <FaFileAlt /> },
+    { to: '/Cronograma', label: 'Cronograma', icon: <FaClipboardList />, action: handleFormSubmit },
+    { to: '/Dados', label: 'Dados', icon: <FaUserPlus /> },
+    { to: '/FichaInteresse', label: 'Ficha de Interesse', icon: <FaClipboardCheck /> },
+    { to: '/InscricaoPrograma', label: 'Inscrição', icon: <FaClipboardList />, action: handleFormSubmit },
+    { to: '/PlanoAcao', label: 'Plano de Ação', icon: <FaChartLine /> },
+  ];
 
   return (
     <div>
-      <div className={style["dashboard-container"]}>
-        {/* Barra superior com informações do usuário */}
-        <div className={style["user-bar"]}>
+      <div className={`${style['dashboard-container']} max-w-6xl mx-auto`}>
+        {/* Barra superior com destaque */}
+        <div className={style['user-bar']}>
           <div>
-            <strong>Bem-vindo, {userData.nomeRepresentante || "Usuário"}!</strong>
+            <strong>Bem-vindo, {userData.nomeRepresentante || 'Usuário'}!</strong>
             <br />
             <span>
-              <strong>Ministério:</strong> Ministério do Trabalho
+              <strong>Empresa:</strong>{' '}
+              {userData.nomeEmpresa?.split(' ').slice(0, 2).join(' ') || 'Empresa'}
+            </span>
+            <br />
+            <strong>CNPJ: {userData.cnpj || 'CNPJ não informado'}</strong>
+          </div>
+          <div className={style['user-email']}>{userData.email || 'Email não informado'}</div>
+        </div>
+
+        {/* Barra de progresso */}
+        <div className={style['progress-bar-container']}>
+          <div
+            className={style['progress-bar']}
+            style={{ width: `${progressPercentage}%` }}
+          >
+            <span className={style['progress-text']}>
+              {`Cadastro em andamento: ${progressPercentage.toFixed(0)}%`}
             </span>
           </div>
-          <div className={style["user-email"]}>
-            {userData.email || "Email não informado"}
-          </div>
         </div>
 
-        {/* Exibir contagem de usuários cadastrados */}
-        <div className={style["stats-container"]}>
-          <h3>
-            Usuários cadastrados: {loading ? "Carregando..." : users.length}
-          </h3>
-        </div>
-
-        {/* Botões de navegação */}
-        <div className={style["link-list"]}>
-          <button className={style["card"]} onClick={handleRedirectDash}>
-            DashboardGoverno
-          </button>
-          <button className={style["card"]} onClick={handleRedirectServ}>
-            Serviços e Suporte
-          </button>
+        {/* Links em forma de cards */}
+        <div className={style['link-list']}>
+          {links.map((link, index) => (
+            <Link
+              key={index}
+              to={link.to}
+              className={style['card']}
+              onClick={link.action || null}
+            >
+              <div className={style['icon']}>{link.icon}</div>
+              <span>
+                {loading && link.to === '/InscricaoPrograma' ? 'Enviando...' : link.label}
+              </span>
+            </Link>
+          ))}
         </div>
       </div>
+      <Logout />
+      <Footer />
     </div>
   );
 }
 
-export default DashboardGoverno;
+export default Dashboard;
 
 
 
